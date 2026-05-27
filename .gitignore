@@ -1,0 +1,56 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Codex credentials and runtime state
+auth.json
+config.toml
+installation_id
+history.jsonl
+session_index.jsonl
+models_cache.json
+version.json
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.log
+
+# Codex runtime directories that should never be published
+.tmp/
+tmp/
+cache/
+logs/
+log/
+sessions/
+memories/
+browser/
+computer-use/
+node_repl/
+plugins/
+skills/
+shell_snapshots/
+sqlite/
+vendor_imports/
+
+# Secrets and token material
+*credential*
+*credentials*
+*secret*
+*secrets*
+*token*
+*tokens*
+*.pem
+*.key
+*.p12
+*.pfx
+
