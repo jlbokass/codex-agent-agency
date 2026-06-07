@@ -32,15 +32,17 @@ scripts are provided in this step.
    - Create a documentation folder for project notes and setup instructions.
 
 4. Copy scaffold files
-   - Copy the future theme scaffold files into the theme folder.
-   - Copy the future plugin scaffold files into the plugin folder when requested.
+   - Copy files from `scaffolds/wordpress-classic-theme/` into the theme folder.
+   - Copy files from `scaffolds/wordpress-core-plugin/` into the plugin folder
+     when requested.
    - Keep theme and plugin responsibilities separated.
 
 5. Replace placeholders
-   - Replace project name placeholders.
-   - Replace theme slug, PHP prefix, and text domain placeholders.
-   - Replace plugin slug and plugin prefix placeholders when a companion plugin
-     is requested.
+   - Replace `{{THEME_NAME}}`, `{{THEME_SLUG}}`, `{{TEXT_DOMAIN}}`,
+     `{{PHP_PREFIX}}`, and `{{AUTHOR_NAME}}` in theme scaffold files.
+   - Replace `{{PLUGIN_NAME}}`, `{{PLUGIN_SLUG}}`, `{{TEXT_DOMAIN}}`,
+     `{{PHP_PREFIX}}`, and `{{AUTHOR_NAME}}` in plugin scaffold files when a
+     companion plugin is requested.
    - Review generated names for consistency.
 
 6. Create optional Local WP symlinks

@@ -1,0 +1,10 @@
+.button,
+.content-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+}

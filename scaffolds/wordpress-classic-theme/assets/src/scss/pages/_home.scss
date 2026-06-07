@@ -1,0 +1,28 @@
+@use "../abstracts/mixins" as *;
+
+.hero__inner,
+.site-main > .page-content,
+.content-list,
+.archive-header,
+.single-entry {
+  @include container;
+}
+
+.hero {
+  padding-block: clamp(3rem, 10vw, 8rem);
+  background: var(--color-surface);
+}
+
+.hero__title {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.95;
+}
+
+.content-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+  padding-block: 3rem;
+}

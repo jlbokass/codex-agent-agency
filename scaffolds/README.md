@@ -7,15 +7,20 @@ adapted, or generated into another repository.
 Scaffolds are not prompts and not agents. Prompts describe tasks, agents describe
 operating behavior, and scaffolds provide reusable code structure.
 
-## Example Scaffold Types
+## Current Scaffolds
+
+- `wordpress-classic-theme/` - reusable classic WordPress theme scaffold with
+  placeholder-driven template files, theme setup, asset loading, template parts,
+  and source Sass/JavaScript structure.
+- `wordpress-core-plugin/` - reusable companion plugin scaffold for Custom Post
+  Types, taxonomies, metadata, admin customization, and business logic.
+
+## Example Future Scaffold Types
 
 Future scaffolds may include:
 
-- WordPress classic theme scaffold
-- WordPress core plugin scaffold
 - static Bootstrap/Sass mockup scaffold
 - Symfony or Laravel project fragments
 
-This directory is reserved for generated-code templates. It does not currently
-contain WordPress theme files, plugin files, or static mockup implementation
-files.
+This directory is reserved for generated-code templates. Scaffolds should remain
+generic and avoid client-specific content.
