@@ -1,6 +1,6 @@
 ---
 name: wordpress-custom-theme-scaffold
-description: Define and run the workflow for creating a maintainable custom WordPress theme project scaffold, with optional companion plugin, Local WP symlinks, Git initialization, and GitHub repository setup.
+description: Generate a local maintainable custom WordPress theme project scaffold from reusable scaffold files, with optional companion plugin; Local WP symlinks, Git initialization, and GitHub setup remain future workflow steps.
 ---
 
 # WordPress Custom Theme Scaffold
@@ -10,9 +10,11 @@ theme project scaffold. The scaffold workflow may optionally include a companion
 custom plugin, Local WP symlinks, Git initialization, and GitHub repository
 setup.
 
-This skill currently defines the contract and workflow only. It does not include
-scaffold files, shell scripts, generated WordPress project files, or deployment
-configuration.
+This skill now includes a first local generator script:
+`scripts/create-wp-custom-theme.sh`. The script generates a local project folder
+from the existing WordPress theme and plugin scaffolds. It does not create Local
+WP symlinks, initialize Git, create GitHub repositories, push code, install npm
+dependencies, or generate client-specific content.
 
 For the detailed future execution sequence, read
 `references/workflow.md`.
@@ -33,10 +35,15 @@ The skill is intended to support a future workflow that can:
 Collect and confirm these inputs before generating files:
 
 - human project name
+- project slug
+- theme name
 - theme slug
 - PHP prefix
 - text domain
+- author name
+- output directory
 - whether to create a companion plugin
+- plugin name, when a companion plugin is requested
 - plugin slug, when a companion plugin is requested
 - Local WP project path, when symlinks are requested
 - whether to initialize Git
@@ -51,6 +58,8 @@ The future scaffold workflow should produce:
 - theme folder
 - optional plugin folder
 - documentation folder
+- local project README
+- local setup notes
 - optional Local WP symlinks
 - optional Git repository
 - optional GitHub remote
