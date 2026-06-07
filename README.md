@@ -2,7 +2,7 @@
 
 Clean, GitHub-ready backup of reusable Codex agent agency assets from `~/.codex`.
 
-This repository intentionally stores only shareable operating instructions, workflows, prompts, templates, checklists, and design-system notes. It does not include credentials, sessions, logs, cache files, memories, local runtime configuration, tokens, or temporary state.
+This repository intentionally stores only shareable operating instructions, workflows, prompts, templates, scaffolds, skills, checklists, and design-system notes. It does not include credentials, sessions, logs, cache files, memories, local runtime configuration, tokens, or temporary state.
 
 ## Contents
 
@@ -12,13 +12,10 @@ This repository intentionally stores only shareable operating instructions, work
 - `workflows/` - repeatable procedures for features, bug fixes, reviews, refactors, releases, and onboarding.
 - `checklists/` - quality gates for delivery, security, release readiness, and UI/UX checks.
 - `templates/` - reusable project instruction templates for copying into specific repositories, not generated code scaffolds.
+- `skills/` - executable or semi-executable Codex workflows for repeatable procedures.
+- `scaffolds/` - reusable generated-code templates and project fragments.
 - `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
 - `scripts/` - sync utilities for backing up and restoring the public-safe Codex assets.
-
-Future directory boundaries:
-
-- `scaffolds/` would contain generated project code templates if added later.
-- `skills/` would contain executable Codex workflows if added later.
 
 ## Sync Scripts
 
