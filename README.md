@@ -11,9 +11,14 @@ This repository intentionally stores only shareable operating instructions, work
 - `prompts/` - reusable task prompts for common engineering work.
 - `workflows/` - repeatable procedures for features, bug fixes, reviews, refactors, releases, and onboarding.
 - `checklists/` - quality gates for delivery, security, release readiness, and UI/UX checks.
-- `templates/` - reusable project instruction templates for copying into specific repositories.
+- `templates/` - reusable project instruction templates for copying into specific repositories, not generated code scaffolds.
 - `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
 - `scripts/` - sync utilities for backing up and restoring the public-safe Codex assets.
+
+Future directory boundaries:
+
+- `scaffolds/` would contain generated project code templates if added later.
+- `skills/` would contain executable Codex workflows if added later.
 
 ## Sync Scripts
 
