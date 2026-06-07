@@ -2,8 +2,9 @@
 
 This reference describes the intended execution flow for the WordPress custom
 theme scaffold skill. Local project generation is now handled by
-`scripts/create-wp-custom-theme.sh`. Local WP symlinks, Git initialization,
-GitHub repository creation, and pushes remain future steps.
+`scripts/create-wp-custom-theme.sh`. Local WP symlinks are handled by
+`scripts/link-localwp.sh`. Git initialization, GitHub repository creation, and
+pushes remain future steps.
 
 ## Steps
 
@@ -58,12 +59,21 @@ GitHub repository creation, and pushes remain future steps.
    - The script renames `.tpl` files by removing the `.tpl` suffix.
    - Review generated names for consistency.
 
-6. Create optional Local WP symlinks in a future step
-   - Verify the Local WP project path.
-   - Link the generated theme into the Local WP `wp-content/themes` directory.
-   - Link the generated plugin into the Local WP `wp-content/plugins` directory
-     when a companion plugin exists.
-   - Do not overwrite existing folders or links without explicit confirmation.
+6. Create optional Local WP symlinks
+   - Run `scripts/link-localwp.sh` when Local WP linking is requested.
+   - Confirm the project slug, Local WP site slug, and theme slug.
+   - Confirm the plugin slug when plugin linking is requested.
+   - Use the default projects root `/Users/jean-le-grandbokassa/Sites` unless
+     `--projects-root` is provided.
+   - Use the default Local WP sites root
+     `/Users/jean-le-grandbokassa/Local Sites` unless `--local-sites-root` is
+     provided.
+   - The script links the generated theme into the Local WP
+     `wp-content/themes` directory.
+   - The script links the generated plugin into the Local WP
+     `wp-content/plugins` directory when requested.
+   - Use `--force` only to replace existing symlinks; never delete real files or
+     directories.
 
 7. Initialize Git in a future step
    - Initialize a Git repository when requested.

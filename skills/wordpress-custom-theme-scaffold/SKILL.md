@@ -1,6 +1,6 @@
 ---
 name: wordpress-custom-theme-scaffold
-description: Generate a local maintainable custom WordPress theme project scaffold from reusable scaffold files, with optional companion plugin; Local WP symlinks, Git initialization, and GitHub setup remain future workflow steps.
+description: Generate a local maintainable custom WordPress theme project scaffold from reusable scaffold files, with optional companion plugin and Local WP symlink helper; Git initialization and GitHub setup remain future workflow steps.
 ---
 
 # WordPress Custom Theme Scaffold
@@ -16,6 +16,12 @@ from the existing WordPress theme and plugin scaffolds. It does not create Local
 WP symlinks, initialize Git, create GitHub repositories, push code, install npm
 dependencies, or generate client-specific content.
 
+This skill also includes a Local WP symlink helper:
+`scripts/link-localwp.sh`. The helper links an already generated theme, and
+optionally its companion plugin, into an existing Local WP site. It does not
+initialize Git, create GitHub repositories, push code, or generate scaffold
+files.
+
 For the detailed future execution sequence, read
 `references/workflow.md`.
 
@@ -26,8 +32,8 @@ The skill is intended to support a future workflow that can:
 - create a maintainable custom WordPress theme project
 - optionally create a companion custom plugin for Custom Post Types, taxonomies,
   metadata, and business logic
-- optionally link the generated theme and plugin into a Local WP installation
-  using symlinks
+- link the generated theme and optional plugin into a Local WP installation
+  using symlinks when requested
 - optionally initialize Git and push to GitHub
 
 ## Required Inputs
