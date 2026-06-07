@@ -7,12 +7,13 @@ This repository intentionally stores only shareable operating instructions, work
 ## Contents
 
 - `AGENTS.md` - global Codex operating instructions.
-- `agents/` - specialized agent instruction profiles.
-- `workflows/` - repeatable engineering and product workflows.
-- `checklists/` - quality gates and release readiness checks.
-- `prompts/` - reusable prompt templates.
-- `templates/` - reusable agent/project templates.
-- `design-system/` - UI, UX, motion, spacing, and typography guidance.
+- `agents/` - specialized technical profiles for specific stacks, roles, and review modes.
+- `prompts/` - reusable task prompts for common engineering work.
+- `workflows/` - repeatable procedures for features, bug fixes, reviews, refactors, releases, and onboarding.
+- `checklists/` - quality gates for delivery, security, release readiness, and UI/UX checks.
+- `templates/` - reusable project instruction templates for copying into specific repositories.
+- `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
+- `scripts/` - sync utilities for backing up and restoring the public-safe Codex assets.
 
 ## Sync Scripts
 
