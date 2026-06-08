@@ -11,9 +11,10 @@ HTML, SCSS, Bootstrap customized through Sass, JavaScript without bundling by
 default, optional jQuery, npm scripts, Sass CLI, and BrowserSync for local
 development and live reload.
 
-This skill currently defines the contract and workflow only. It does not include
-static scaffold files, shell scripts, `package.json`, BrowserSync
-configuration, generated HTML, CSS, SCSS, or JavaScript files.
+This skill now has a first reusable scaffold at
+`scaffolds/static-bootstrap-sass/`. It does not include generator scripts,
+dependency installation, Git initialization, GitHub repository creation, or
+generated project output yet.
 
 Vite is not used by default. Webpack is not used by default. JavaScript bundling
 is not used by default. Vite or Webpack may be considered later only for

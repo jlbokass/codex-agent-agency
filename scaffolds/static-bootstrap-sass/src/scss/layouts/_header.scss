@@ -1,0 +1,19 @@
+.site-header {
+  border-bottom: 1px solid var(--mockup-border);
+  background: #fff;
+}
+
+.site-header__menu {
+  display: none;
+
+  &.is-open,
+  &.is-static {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  .site-header__menu {
+    display: block;
+  }
+}

@@ -14,12 +14,13 @@ operating behavior, and scaffolds provide reusable code structure.
   and source Sass/JavaScript structure.
 - `wordpress-core-plugin/` - reusable companion plugin scaffold for Custom Post
   Types, taxonomies, metadata, admin customization, and business logic.
+- `static-bootstrap-sass/` - reusable static HTML, SCSS, Bootstrap-through-Sass,
+  Sass CLI, BrowserSync, and unbundled JavaScript scaffold for frontend mockups.
 
 ## Example Future Scaffold Types
 
 Future scaffolds may include:
 
-- static Bootstrap/Sass mockup scaffold
 - Symfony or Laravel project fragments
 
 This directory is reserved for generated-code templates. Scaffolds should remain

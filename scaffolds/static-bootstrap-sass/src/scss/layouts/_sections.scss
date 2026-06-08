@@ -1,0 +1,21 @@
+@use "../abstracts/mixins" as *;
+
+.section {
+  @include section-shell;
+}
+
+.section-heading {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.section-eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--mockup-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.page-intro {
+  background: var(--mockup-surface);
+}

@@ -1,0 +1,15 @@
+// Override Bootstrap variables before importing Bootstrap in main.scss.
+$primary: #2454ff;
+$secondary: #111827;
+$body-color: #111827;
+$body-bg: #ffffff;
+$font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$headings-font-weight: 700;
+$border-radius: 0.375rem;
+
+:root {
+  --mockup-surface: #f5f7fb;
+  --mockup-border: #d8dee9;
+  --mockup-muted: #5f6b7a;
+  --mockup-section-space: clamp(4rem, 8vw, 7rem);
+}

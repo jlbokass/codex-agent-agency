@@ -1,0 +1,12 @@
+.hero {
+  min-height: min(720px, 90vh);
+  display: flex;
+  align-items: center;
+  background: var(--mockup-surface);
+}
+
+.hero__lead {
+  max-width: 42rem;
+  color: var(--mockup-muted);
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+}

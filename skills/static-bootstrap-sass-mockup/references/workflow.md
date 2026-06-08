@@ -1,9 +1,10 @@
 # Future Workflow
 
 This reference describes the intended execution flow for the static Bootstrap
-and Sass mockup skill. It is a workflow contract only; no scaffold files,
-scripts, package files, BrowserSync configuration, or generated frontend assets
-are provided in this step.
+and Sass mockup skill. A first reusable scaffold now exists at
+`scaffolds/static-bootstrap-sass/`. No generator scripts, dependency
+installation, Git initialization, GitHub repository creation, or generated
+project output are provided in this step.
 
 The default future tooling is npm scripts, Sass CLI, and BrowserSync. Vite,
 Webpack, and JavaScript bundling are not default choices and should be
@@ -39,7 +40,7 @@ considered later only when a project clearly justifies them.
    - Keep the structure framework-agnostic so it can be integrated later.
 
 4. Copy static scaffold files
-   - Copy future static scaffold files into the project folder.
+   - Copy files from `scaffolds/static-bootstrap-sass/` into the project folder.
    - Include Bootstrap-related files only when requested.
    - Customize Bootstrap through Sass when requested.
    - Include Sass architecture only when requested.
