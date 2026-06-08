@@ -1,14 +1,20 @@
 # Future Workflow
 
 This reference describes the intended execution flow for the WordPress custom
-theme scaffold skill. Local project generation is now handled by
-`scripts/create-wp-custom-theme.sh`. Local WP symlinks are handled by
+theme scaffold skill. The recommended interactive path is
+`scripts/bootstrap-wp-custom-project.sh`, which calls
+`scripts/create-wp-custom-theme.sh` and optionally calls
 `scripts/link-localwp.sh`. Git initialization, GitHub repository creation, and
 pushes remain future steps.
 
 ## Steps
 
-1. Collect inputs
+1. Start the interactive bootstrap workflow
+   - Run `scripts/bootstrap-wp-custom-project.sh` for guided usage.
+   - Use long-option overrides for known values when useful.
+   - Use `references/usage.md` for full command examples and troubleshooting.
+
+2. Collect inputs
    - Confirm the human project name.
    - Confirm the project slug.
    - Confirm the theme name.
@@ -24,7 +30,7 @@ pushes remain future steps.
    - Ask whether to create a GitHub repository.
    - If GitHub setup is requested, confirm repository visibility.
 
-2. Validate slugs and prefixes
+3. Validate slugs and prefixes
    - Ensure slugs use lowercase letters, numbers, and hyphens.
    - Ensure PHP prefixes use lowercase letters, numbers, and underscores.
    - Ensure the text domain is stable and compatible with WordPress translation
@@ -34,33 +40,33 @@ pushes remain future steps.
    - Ensure the plugin slug is present when a companion plugin is requested.
    - Ensure requested paths are explicit before creating symlinks.
 
-3. Generate the local project
-   - Run `scripts/create-wp-custom-theme.sh` with the confirmed inputs.
-   - The script creates the root project folder.
-   - The script creates the theme folder.
-   - The script creates the optional plugin folder when requested.
-   - The script creates `README.md` and `docs/setup.md`.
-
-4. Copy scaffold files
-   - The script copies files from `scaffolds/wordpress-classic-theme/` into the
+4. Generate the local project
+   - The bootstrap script calls `scripts/create-wp-custom-theme.sh` with the
+     confirmed inputs.
+   - The generator creates the root project folder.
+   - The generator creates the theme folder.
+   - The generator creates the optional plugin folder when requested.
+   - The generator creates `README.md` and `docs/setup.md`.
+   - The generator copies files from `scaffolds/wordpress-classic-theme/` into the
      theme folder.
-   - The script copies files from `scaffolds/wordpress-core-plugin/` into the
+   - The generator copies files from `scaffolds/wordpress-core-plugin/` into the
      plugin folder when requested.
    - Keep theme and plugin responsibilities separated.
 
 5. Replace placeholders
-   - The script replaces `{{PROJECT_NAME}}`, `{{PROJECT_SLUG}}`,
+   - The generator replaces `{{PROJECT_NAME}}`, `{{PROJECT_SLUG}}`,
      `{{THEME_NAME}}`, `{{THEME_SLUG}}`, `{{TEXT_DOMAIN}}`, `{{PHP_PREFIX}}`,
      and `{{AUTHOR_NAME}}` in theme scaffold files.
-   - The script replaces `{{PROJECT_NAME}}`, `{{PROJECT_SLUG}}`,
+   - The generator replaces `{{PROJECT_NAME}}`, `{{PROJECT_SLUG}}`,
      `{{PLUGIN_NAME}}`, `{{PLUGIN_SLUG}}`, `{{TEXT_DOMAIN}}`, `{{PHP_PREFIX}}`,
      and `{{AUTHOR_NAME}}` in plugin scaffold files when a companion plugin is
      requested.
-   - The script renames `.tpl` files by removing the `.tpl` suffix.
+   - The generator renames `.tpl` files by removing the `.tpl` suffix.
    - Review generated names for consistency.
 
 6. Create optional Local WP symlinks
-   - Run `scripts/link-localwp.sh` when Local WP linking is requested.
+   - The bootstrap script calls `scripts/link-localwp.sh` when Local WP linking
+     is requested.
    - Confirm the project slug, Local WP site slug, and theme slug.
    - Confirm the plugin slug when plugin linking is requested.
    - Use the default projects root `/Users/jean-le-grandbokassa/Sites` unless
