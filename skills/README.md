@@ -25,8 +25,9 @@ Skills may cover repeatable workflows such as:
   for generating a custom WordPress theme project, with optional companion
   plugin, Local WP symlinks, Git initialization, and GitHub setup.
 - `static-bootstrap-sass-mockup/` - defines the contract and future workflow for
-  creating static HTML, SCSS, custom Bootstrap, Sass, and JavaScript mockups
-  before backend or CMS integration.
+  creating static HTML, SCSS, Bootstrap customized through Sass, lightweight
+  JavaScript, npm script, Sass CLI, and BrowserSync mockups before backend or
+  CMS integration.
 
 This directory is reserved for workflow definitions. It does not contain
 generated project scaffolds.

@@ -1,19 +1,23 @@
 ---
 name: static-bootstrap-sass-mockup
-description: Define the workflow for creating static HTML, SCSS, custom Bootstrap, Sass, and JavaScript mockups before backend, CMS, or framework integration.
+description: Define the workflow for creating static HTML, SCSS, custom Bootstrap through Sass, JavaScript, npm script, Sass CLI, and BrowserSync mockups before backend, CMS, or framework integration.
 ---
 
 # Static Bootstrap Sass Mockup
 
 Use this skill when asked to create or plan a static frontend mockup before
-backend, CMS, or framework integration. The future workflow should use HTML,
-SCSS, custom Bootstrap, Sass, and JavaScript to validate visual design,
-spacing, responsive behavior, and UI components before implementation in a
-production stack.
+backend, CMS, or framework integration. The default future workflow should use
+HTML, SCSS, Bootstrap customized through Sass, JavaScript without bundling by
+default, optional jQuery, npm scripts, Sass CLI, and BrowserSync for local
+development and live reload.
 
 This skill currently defines the contract and workflow only. It does not include
-static scaffold files, shell scripts, `package.json`, Vite configuration, or
-generated HTML, CSS, SCSS, or JavaScript files.
+static scaffold files, shell scripts, `package.json`, BrowserSync
+configuration, generated HTML, CSS, SCSS, or JavaScript files.
+
+Vite is not used by default. Webpack is not used by default. JavaScript bundling
+is not used by default. Vite or Webpack may be considered later only for
+projects that justify that additional tooling.
 
 For the detailed future execution sequence, read `references/workflow.md`.
 
@@ -22,7 +26,7 @@ For the detailed future execution sequence, read `references/workflow.md`.
 The skill is intended to support a future workflow that can:
 
 - create static mockups before backend or CMS integration
-- use HTML, SCSS, custom Bootstrap, Sass, and JavaScript
+- use HTML, SCSS, Bootstrap customized through Sass, and lightweight JavaScript
 - validate visual design, spacing, responsive behavior, and UI components before
   integration
 - prepare mockups that can later be integrated into WordPress, Laravel, Symfony,
@@ -39,8 +43,12 @@ Collect and confirm these inputs before generating files:
 - page names
 - design style notes
 - whether Bootstrap should be included
+- whether Bootstrap should be customized through Sass
 - whether custom Sass structure should be included
+- whether custom mixins should be included
 - whether JavaScript interactions should be included
+- whether jQuery should be included
+- whether BrowserSync should be included
 - whether Git should be initialized later
 - whether GitHub repository creation should be handled later
 
@@ -49,14 +57,34 @@ Collect and confirm these inputs before generating files:
 The future mockup workflow should produce:
 
 - project folder
+- `package.json`
+- npm scripts
 - `src/` folder
-- `public/` folder or static HTML pages
+- `src/scss/`
+- `src/scss/abstracts/_variables.scss`
+- `src/scss/abstracts/_mixins.scss`
+- `src/js/main.js`
+- `public/` HTML pages
 - SCSS architecture
 - JavaScript entry point
 - assets folder
+- `assets/css/`
+- `assets/js/`
 - documentation folder
 - root `README.md`
 - root `.gitignore`
+
+## Expected npm Scripts
+
+The future scaffold should define:
+
+- `npm run dev`
+- `npm run serve`
+- `npm run watch:scss`
+- `npm run build`
+
+`npm run dev` should run Sass watch, start a local static server, and reload on
+HTML, CSS, and JavaScript changes.
 
 ## Boundaries
 

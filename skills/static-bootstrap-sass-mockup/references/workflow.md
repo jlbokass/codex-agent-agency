@@ -2,8 +2,12 @@
 
 This reference describes the intended execution flow for the static Bootstrap
 and Sass mockup skill. It is a workflow contract only; no scaffold files,
-scripts, package files, Vite configuration, or generated frontend assets are
-provided in this step.
+scripts, package files, BrowserSync configuration, or generated frontend assets
+are provided in this step.
+
+The default future tooling is npm scripts, Sass CLI, and BrowserSync. Vite,
+Webpack, and JavaScript bundling are not default choices and should be
+considered later only when a project clearly justifies them.
 
 ## Steps
 
@@ -15,8 +19,12 @@ provided in this step.
    - Confirm page names.
    - Confirm design style notes.
    - Ask whether Bootstrap should be included.
+   - Ask whether Bootstrap should be customized through Sass.
    - Ask whether a custom Sass structure should be included.
+   - Ask whether custom mixins should be included.
    - Ask whether JavaScript interactions should be included.
+   - Ask whether jQuery should be included.
+   - Ask whether BrowserSync should be included.
    - Ask whether Git initialization should be handled later.
    - Ask whether GitHub repository creation should be handled later.
 
@@ -33,8 +41,11 @@ provided in this step.
 4. Copy static scaffold files
    - Copy future static scaffold files into the project folder.
    - Include Bootstrap-related files only when requested.
+   - Customize Bootstrap through Sass when requested.
    - Include Sass architecture only when requested.
+   - Include small project-oriented mixins only when requested.
    - Include JavaScript entry files only when requested.
+   - Include jQuery only when requested.
 
 5. Replace placeholders
    - Replace project name, project slug, author name, page names, and other
@@ -43,12 +54,20 @@ provided in this step.
 
 6. Install dependencies later
    - Dependency installation is a future step.
+   - The future scaffold should use lightweight npm dependencies for Sass CLI
+     and BrowserSync.
    - Do not add or run npm installation in the contract-only phase.
 
 7. Run local dev server later
    - Local dev server support is a future step.
-   - Do not add Vite configuration or dev server scripts in the contract-only
-     phase.
+   - The default future dev server should use BrowserSync, not Vite or Webpack.
+   - `npm run dev` should run Sass watch, start a local static server, and
+     reload on HTML, CSS, and JavaScript changes.
+   - `npm run serve` should start the local static server.
+   - `npm run watch:scss` should run Sass watch.
+   - `npm run build` should compile production CSS.
+   - Do not add BrowserSync configuration or dev server scripts in the
+     contract-only phase.
 
 8. Initialize Git later
    - Git initialization is a future optional step.
@@ -62,5 +81,13 @@ provided in this step.
     - Show the generated project path.
     - Show included pages.
     - Show whether Bootstrap, Sass, and JavaScript were included.
+    - Show whether jQuery, BrowserSync, and custom mixins were included.
     - Show remaining manual setup steps.
     - List visual QA checks before backend or CMS integration.
+
+## Mixins
+
+- Mixins are allowed.
+- Mixins should stay small and project-oriented.
+- Do not recreate Bootstrap mixins.
+- Keep mixins readable and documented.
