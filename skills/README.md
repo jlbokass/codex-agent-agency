@@ -24,6 +24,9 @@ Skills may cover repeatable workflows such as:
 - `wordpress-custom-theme-scaffold/` - defines the contract and future workflow
   for generating a custom WordPress theme project, with optional companion
   plugin, Local WP symlinks, Git initialization, and GitHub setup.
+- `static-bootstrap-sass-mockup/` - defines the contract and future workflow for
+  creating static HTML, SCSS, custom Bootstrap, Sass, and JavaScript mockups
+  before backend or CMS integration.
 
 This directory is reserved for workflow definitions. It does not contain
 generated project scaffolds.

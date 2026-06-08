@@ -12,7 +12,7 @@ This repository intentionally stores only shareable operating instructions, work
 - `workflows/` - repeatable procedures for features, bug fixes, reviews, refactors, releases, and onboarding.
 - `checklists/` - quality gates for delivery, security, release readiness, and UI/UX checks.
 - `templates/` - reusable project instruction templates for copying into specific repositories, not generated code scaffolds.
-- `skills/` - executable or semi-executable Codex workflows for repeatable procedures, including the first WordPress custom theme scaffold workflow definition.
+- `skills/` - executable or semi-executable Codex workflows for repeatable procedures, including WordPress scaffold and static mockup workflow definitions.
 - `scaffolds/` - reusable generated-code templates and project fragments.
 - `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
 - `scripts/` - sync utilities for backing up and restoring the public-safe Codex assets.
