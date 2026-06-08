@@ -2,6 +2,7 @@
 
 .section {
   @include section-shell;
+  max-width: 100%;
 }
 
 .section-heading {

@@ -4,12 +4,22 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
 }
 
 img,
-svg {
+svg,
+video,
+canvas,
+iframe {
+  display: block;
   max-width: 100%;
   height: auto;
 }

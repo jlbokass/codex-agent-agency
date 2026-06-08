@@ -11,10 +11,13 @@
     <nav class="navbar navbar-expand-lg" aria-label="Primary navigation">
       <div class="container">
         <a class="navbar-brand" href="index.html">{{PROJECT_NAME}}</a>
-        <div class="site-header__menu is-static">
+        <button class="navbar-toggler" type="button" data-menu-toggle aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="site-header__menu" id="primary-navigation" data-menu>
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="about.html" aria-current="page">About</a></li>
             <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
             <li class="nav-item"><a class="nav-link" href="works.html">Works</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>

@@ -2,9 +2,9 @@
 
 This reference describes the intended execution flow for the static Bootstrap
 and Sass mockup skill. A first reusable scaffold now exists at
-`scaffolds/static-bootstrap-sass/`. No generator scripts, dependency
-installation, Git initialization, GitHub repository creation, or generated
-project output are provided in this step.
+`scaffolds/static-bootstrap-sass/`. Local project generation is now handled by
+`scripts/create-static-mockup.sh`. Dependency installation, Git initialization,
+and GitHub repository creation remain future steps.
 
 The default future tooling is npm scripts, Sass CLI, and BrowserSync. Vite,
 Webpack, and JavaScript bundling are not default choices and should be
@@ -35,12 +35,15 @@ considered later only when a project clearly justifies them.
    - Ensure the output location exists before writing files.
 
 3. Create project folder
-   - Create the root project folder.
-   - Create folders for source files, static pages, assets, and documentation.
+   - Run `scripts/create-static-mockup.sh` with the confirmed inputs.
+   - The script creates the root project folder.
+   - The script creates folders for source files, static pages, assets, and
+     documentation.
    - Keep the structure framework-agnostic so it can be integrated later.
 
 4. Copy static scaffold files
-   - Copy files from `scaffolds/static-bootstrap-sass/` into the project folder.
+   - The script copies files from `scaffolds/static-bootstrap-sass/` into the
+     project folder.
    - Include Bootstrap-related files only when requested.
    - Customize Bootstrap through Sass when requested.
    - Include Sass architecture only when requested.
@@ -49,8 +52,12 @@ considered later only when a project clearly justifies them.
    - Include jQuery only when requested.
 
 5. Replace placeholders
-   - Replace project name, project slug, author name, page names, and other
-     metadata placeholders.
+   - The script replaces `{{PROJECT_NAME}}`, `{{PROJECT_SLUG}}`,
+     `{{AUTHOR_NAME}}`, and `{{PAGES}}`.
+   - The script renames `.tpl` files by removing the `.tpl` suffix.
+   - When custom page lists are provided, the script keeps `index.html`, creates
+     requested pages from known templates or a generic page template, and removes
+     unused default pages.
    - Review generated names for consistency.
 
 6. Install dependencies later

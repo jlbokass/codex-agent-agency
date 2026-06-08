@@ -12,15 +12,20 @@ default, optional jQuery, npm scripts, Sass CLI, and BrowserSync for local
 development and live reload.
 
 This skill now has a first reusable scaffold at
-`scaffolds/static-bootstrap-sass/`. It does not include generator scripts,
-dependency installation, Git initialization, GitHub repository creation, or
-generated project output yet.
+`scaffolds/static-bootstrap-sass/`.
+
+This skill also includes a first local generator script:
+`scripts/create-static-mockup.sh`. The script generates a local static mockup
+project from the scaffold. It does not install dependencies, initialize Git,
+create GitHub repositories, use Vite, use Webpack, or add backend/CMS-specific
+files.
 
 Vite is not used by default. Webpack is not used by default. JavaScript bundling
 is not used by default. Vite or Webpack may be considered later only for
 projects that justify that additional tooling.
 
-For the detailed future execution sequence, read `references/workflow.md`.
+For the detailed workflow, read `references/workflow.md`. For command examples
+and troubleshooting, read `references/usage.md`.
 
 ## Purpose
 
