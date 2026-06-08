@@ -26,15 +26,25 @@ Interactive options may be prefilled with long options:
   --local-site-slug local-site-slug
   --local-sites-root "/Users/jean-le-grandbokassa/Local Sites"
   --force-localwp
+  --init-git
+  --initial-branch main
+  --commit-message "Initial commit"
+  --create-github
+  --repo-name project-slug
+  --visibility private
+  --description "Repository description"
+  --remote-name origin
   --yes
   --help
 
 This orchestrator calls:
   scripts/create-wp-custom-theme.sh
   scripts/link-localwp.sh when Local WP linking is requested
+  scripts/init-git-project.sh when Git initialization is requested
+  scripts/create-github-repo.sh when GitHub repository creation is requested
 
-It does not initialize Git, create GitHub repositories, push code, modify
-scaffold files, or duplicate placeholder replacement or symlink logic.
+Git and GitHub automation are optional. This script does not store credentials,
+modify scaffold files, or duplicate placeholder replacement or symlink logic.
 USAGE
 }
 
@@ -71,6 +81,12 @@ prompt_value() {
     return
   fi
 
+  if [[ "$ASSUME_YES" -eq 1 && "$required" -eq 0 ]]; then
+    printf '%s: \n' "$label" >&2
+    printf ''
+    return
+  fi
+
   if [[ ! -t 0 ]]; then
     if [[ -n "$default_value" ]]; then
       printf '%s: %s\n' "$label" "$default_value" >&2
@@ -81,6 +97,10 @@ prompt_value() {
     if [[ "$required" -eq 1 ]]; then
       error "$label is required in non-interactive mode."
     fi
+
+    printf '%s: \n' "$label" >&2
+    printf ''
+    return
   fi
 
   while true; do
@@ -147,6 +167,74 @@ prompt_yes_no() {
   done
 }
 
+update_project_readme_metadata() {
+  local readme_file="$PROJECT_PATH/README.md"
+  local metadata_file
+  local theme_source="$PROJECT_PATH/theme/$THEME_SLUG"
+  local theme_destination=""
+  local plugin_source=""
+  local plugin_destination=""
+
+  [[ -f "$readme_file" ]] || return
+
+  metadata_file="$(mktemp)"
+
+  {
+    printf '## Workflow State\n\n'
+
+    if [[ "$LINK_LOCALWP" -eq 1 ]]; then
+      theme_destination="$LOCAL_SITES_ROOT/$LOCAL_SITE_SLUG/app/public/wp-content/themes/$THEME_SLUG"
+
+      printf '### Local WP Symlinks\n\n'
+      printf '%s\n' '- Theme symlink created: yes'
+      printf '%s `%s`\n' '- Theme source:' "$theme_source"
+      printf '%s `%s`\n' '- Theme destination:' "$theme_destination"
+
+      if [[ "$WITH_PLUGIN" -eq 1 ]]; then
+        plugin_source="$PROJECT_PATH/plugin/$PLUGIN_SLUG"
+        plugin_destination="$LOCAL_SITES_ROOT/$LOCAL_SITE_SLUG/app/public/wp-content/plugins/$PLUGIN_SLUG"
+        printf '%s\n' '- Plugin symlink created: yes'
+        printf '%s `%s`\n' '- Plugin source:' "$plugin_source"
+        printf '%s `%s`\n' '- Plugin destination:' "$plugin_destination"
+      else
+        printf '%s\n' '- Plugin symlink created: no companion plugin was generated'
+      fi
+    else
+      printf '%s\n' '- No Local WP symlinks were created.'
+    fi
+
+    printf '\n'
+
+    if [[ "$INIT_GIT" -eq 1 ]]; then
+      printf '%s\n' '- Git initialized: yes'
+      printf '%s `%s`\n' '- Initial branch:' "$INITIAL_BRANCH"
+      printf '%s `%s`\n' '- Initial commit message:' "$COMMIT_MESSAGE"
+    else
+      printf '%s\n' '- Git initialized: no'
+    fi
+
+    if [[ "$CREATE_GITHUB" -eq 1 ]]; then
+      printf '%s\n' '- GitHub repository created: yes'
+      printf '%s `%s`\n' '- Repository name:' "$REPO_NAME"
+      printf '%s `%s`\n' '- Repository visibility:' "$VISIBILITY"
+
+      if [[ -n "$GITHUB_REMOTE_URL" ]]; then
+        printf '%s `%s`\n' '- Repository URL:' "$GITHUB_REMOTE_URL"
+      fi
+    else
+      printf '%s\n' '- GitHub repository created: no'
+    fi
+
+    printf '%s\n' '- npm dependencies installed: no'
+  } > "$metadata_file"
+
+  METADATA_CONTENT="$(cat "$metadata_file")" perl -0pi -e '
+    s/## Workflow State\n\n.*?\n## Notes/$ENV{METADATA_CONTENT} . "\n\n## Notes"/se;
+  ' "$readme_file"
+
+  rm -f "$metadata_file"
+}
+
 PROJECT_NAME=""
 PROJECT_SLUG=""
 THEME_NAME=""
@@ -162,6 +250,17 @@ LINK_LOCALWP_CHOICE=""
 LOCAL_SITE_SLUG=""
 LOCAL_SITES_ROOT="$DEFAULT_LOCAL_SITES_ROOT"
 FORCE_LOCALWP=0
+INIT_GIT_CHOICE=""
+INITIAL_BRANCH="main"
+COMMIT_MESSAGE="Initial commit"
+CREATE_GITHUB_CHOICE=""
+REPO_NAME=""
+VISIBILITY="private"
+DESCRIPTION=""
+REMOTE_NAME="origin"
+GITHUB_REMOTE_URL=""
+INIT_GIT=0
+CREATE_GITHUB=0
 ASSUME_YES=0
 
 while [[ $# -gt 0 ]]; do
@@ -238,6 +337,44 @@ while [[ $# -gt 0 ]]; do
       FORCE_LOCALWP=1
       shift
       ;;
+    --init-git)
+      INIT_GIT_CHOICE="yes"
+      shift
+      ;;
+    --initial-branch)
+      require_value "$1" "${2:-}"
+      INITIAL_BRANCH="$2"
+      shift 2
+      ;;
+    --commit-message)
+      require_value "$1" "${2:-}"
+      COMMIT_MESSAGE="$2"
+      shift 2
+      ;;
+    --create-github)
+      CREATE_GITHUB_CHOICE="yes"
+      shift
+      ;;
+    --repo-name)
+      require_value "$1" "${2:-}"
+      REPO_NAME="$2"
+      shift 2
+      ;;
+    --visibility)
+      require_value "$1" "${2:-}"
+      VISIBILITY="$2"
+      shift 2
+      ;;
+    --description)
+      require_value "$1" "${2:-}"
+      DESCRIPTION="$2"
+      shift 2
+      ;;
+    --remote-name)
+      require_value "$1" "${2:-}"
+      REMOTE_NAME="$2"
+      shift 2
+      ;;
     --yes)
       ASSUME_YES=1
       shift
@@ -255,9 +392,13 @@ done
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CREATE_SCRIPT="$SCRIPT_DIR/create-wp-custom-theme.sh"
 LINK_SCRIPT="$SCRIPT_DIR/link-localwp.sh"
+INIT_GIT_SCRIPT="$SCRIPT_DIR/init-git-project.sh"
+GITHUB_SCRIPT="$SCRIPT_DIR/create-github-repo.sh"
 
 [[ -x "$CREATE_SCRIPT" ]] || error "Generator script is not executable: $CREATE_SCRIPT"
 [[ -x "$LINK_SCRIPT" ]] || error "Local WP link script is not executable: $LINK_SCRIPT"
+[[ -x "$INIT_GIT_SCRIPT" ]] || error "Git init script is not executable: $INIT_GIT_SCRIPT"
+[[ -x "$GITHUB_SCRIPT" ]] || error "GitHub repo script is not executable: $GITHUB_SCRIPT"
 
 printf 'WordPress custom project bootstrap\n'
 printf '%s\n' '----------------------------------'
@@ -334,6 +475,60 @@ fi
 
 PROJECT_PATH="$PROJECTS_ROOT/$PROJECT_SLUG"
 
+if prompt_yes_no "Initialize Git repository" "$INIT_GIT_CHOICE" "no"; then
+  INIT_GIT=1
+else
+  INIT_GIT=0
+fi
+
+if [[ "$INIT_GIT" -eq 1 ]]; then
+  INITIAL_BRANCH="$(prompt_value "Initial branch name" "$INITIAL_BRANCH" "main" 1)"
+  COMMIT_MESSAGE="$(prompt_value "Initial commit message" "$COMMIT_MESSAGE" "Initial commit" 1)"
+
+  update_project_readme_metadata
+
+  printf '\nInitializing Git repository...\n'
+  "$INIT_GIT_SCRIPT" \
+    --project-dir "$PROJECT_PATH" \
+    --initial-branch "$INITIAL_BRANCH" \
+    --commit-message "$COMMIT_MESSAGE"
+fi
+
+if prompt_yes_no "Create GitHub repository" "$CREATE_GITHUB_CHOICE" "no"; then
+  CREATE_GITHUB=1
+else
+  CREATE_GITHUB=0
+fi
+
+if [[ "$CREATE_GITHUB" -eq 1 && "$INIT_GIT" -ne 1 ]]; then
+  printf '\nGitHub repository creation requires Git initialization first. Skipping GitHub creation safely.\n' >&2
+  CREATE_GITHUB=0
+fi
+
+if [[ "$CREATE_GITHUB" -eq 1 ]]; then
+  REPO_NAME="$(prompt_value "GitHub repository name" "$REPO_NAME" "$PROJECT_SLUG" 1)"
+  VISIBILITY="$(prompt_value "Repository visibility" "$VISIBILITY" "private" 1)"
+  DESCRIPTION="$(prompt_value "Repository description" "$DESCRIPTION" "" 0)"
+  REMOTE_NAME="$(prompt_value "Git remote name" "$REMOTE_NAME" "origin" 1)"
+
+  printf '\nCreating GitHub repository...\n'
+  github_args=(
+    --project-dir "$PROJECT_PATH"
+    --repo-name "$REPO_NAME"
+    --visibility "$VISIBILITY"
+    --remote-name "$REMOTE_NAME"
+  )
+
+  if [[ -n "$DESCRIPTION" ]]; then
+    github_args+=(--description "$DESCRIPTION")
+  fi
+
+  "$GITHUB_SCRIPT" "${github_args[@]}"
+  GITHUB_REMOTE_URL="$(git -C "$PROJECT_PATH" remote get-url "$REMOTE_NAME" 2>/dev/null || true)"
+fi
+
+update_project_readme_metadata
+
 printf '\nBootstrap complete.\n'
 printf 'Project path: %s\n' "$PROJECT_PATH"
 printf 'Theme slug: %s\n' "$THEME_SLUG"
@@ -344,6 +539,16 @@ fi
 
 if [[ "$LINK_LOCALWP" -eq 1 ]]; then
   printf 'Local WP site slug: %s\n' "$LOCAL_SITE_SLUG"
+fi
+
+if [[ "$INIT_GIT" -eq 1 ]]; then
+  printf 'Git initialized: yes\n'
+  printf 'Initial branch: %s\n' "$INITIAL_BRANCH"
+fi
+
+if [[ "$CREATE_GITHUB" -eq 1 ]]; then
+  printf 'GitHub repository: %s\n' "$REPO_NAME"
+  printf 'Repository visibility: %s\n' "$VISIBILITY"
 fi
 
 printf '\nNext WordPress admin actions:\n'

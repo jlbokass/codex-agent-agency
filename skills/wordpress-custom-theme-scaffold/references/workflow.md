@@ -4,8 +4,8 @@ This reference describes the intended execution flow for the WordPress custom
 theme scaffold skill. The recommended interactive path is
 `scripts/bootstrap-wp-custom-project.sh`, which calls
 `scripts/create-wp-custom-theme.sh` and optionally calls
-`scripts/link-localwp.sh`. Git initialization, GitHub repository creation, and
-pushes remain future steps.
+`scripts/link-localwp.sh`, `scripts/init-git-project.sh`, and
+`scripts/create-github-repo.sh`.
 
 ## Steps
 
@@ -81,17 +81,28 @@ pushes remain future steps.
    - Use `--force` only to replace existing symlinks; never delete real files or
      directories.
 
-7. Initialize Git in a future step
-   - Initialize a Git repository when requested.
-   - Add an initial `.gitignore` suitable for the generated project.
-   - Stage the generated scaffold files.
-   - Commit only when explicitly requested by the user.
+7. Initialize Git when requested
+   - The bootstrap script asks whether to initialize Git after project
+     generation.
+   - Confirm the initial branch name, default `main`.
+   - Confirm the initial commit message, default `Initial commit`.
+   - The bootstrap script calls `scripts/init-git-project.sh`.
+   - The Git helper runs `git init -b`, `git add .`, and `git commit -m`.
+   - The Git helper fails if the project directory is already a Git repository.
 
-8. Create optional GitHub repository in a future step
-   - Create the GitHub repository only when requested.
-   - Use the requested visibility.
-   - Add the GitHub remote to the local repository.
-   - Push only when explicitly requested by the user.
+8. Create optional GitHub repository when requested
+   - Ask whether to create a GitHub repository after Git initialization.
+   - If GitHub creation is requested without Git initialization, explain that
+     Git must be initialized first and skip GitHub creation safely.
+   - Confirm the repository name, default project slug.
+   - Confirm repository visibility, default `private`.
+   - Confirm the optional repository description.
+   - The bootstrap script calls `scripts/create-github-repo.sh`.
+   - The GitHub helper requires GitHub CLI (`gh`) to be installed.
+   - The GitHub helper requires `gh auth status` to succeed.
+   - The GitHub helper fails if the requested remote already exists.
+   - The GitHub helper creates the repository, adds the remote, and pushes the
+     current branch with upstream tracking.
 
 9. Display final next steps
    - Show the generated project path.

@@ -1,6 +1,6 @@
 ---
 name: wordpress-custom-theme-scaffold
-description: Bootstrap a local maintainable custom WordPress theme project from reusable scaffold files, with optional companion plugin and Local WP symlinks; Git initialization and GitHub setup remain future workflow steps.
+description: Bootstrap a local maintainable custom WordPress theme project from reusable scaffold files, with optional companion plugin, Local WP symlinks, Git initialization, and GitHub repository creation.
 ---
 
 # WordPress Custom Theme Scaffold
@@ -26,6 +26,11 @@ The Local WP symlink helper is:
 optionally its companion plugin, into an existing Local WP site. It does not
 initialize Git, create GitHub repositories, push code, or generate scaffold
 files.
+
+Git initialization is handled by `scripts/init-git-project.sh`. GitHub
+repository creation is handled by `scripts/create-github-repo.sh`, which uses
+GitHub CLI and requires `gh auth status` to succeed. These steps are optional
+and never store credentials in the repository.
 
 For the detailed workflow, read `references/workflow.md`. For command examples
 and troubleshooting, read `references/usage.md`.

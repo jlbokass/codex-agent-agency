@@ -107,6 +107,52 @@ remove_tpl_suffixes() {
   done
 }
 
+write_project_gitignore() {
+  local project_dir="$1"
+
+  cat > "$project_dir/.gitignore" <<'EOF'
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+log/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+*.tmp
+*.temp
+
+# Dependencies
+node_modules/
+vendor/
+
+# Local caches
+.cache/
+.parcel-cache/
+.sass-cache/
+.eslintcache
+.stylelintcache
+EOF
+}
+
 write_project_docs() {
   local project_dir="$1"
   local theme_dir="$2"
@@ -131,12 +177,15 @@ EOF
   cat >> "$project_dir/README.md" <<'EOF'
 - `docs/setup.md` - setup notes and next manual steps.
 
-## Notes
+## Workflow State
 
 - No Local WP symlinks were created.
 - Git was not initialized.
 - No GitHub repository was created.
 - No npm dependencies were installed.
+
+## Notes
+
 - No client-specific content was generated.
 EOF
 
@@ -304,6 +353,7 @@ fi
 
 replace_placeholders "$PROJECT_DIR"
 remove_tpl_suffixes "$PROJECT_DIR"
+write_project_gitignore "$PROJECT_DIR"
 write_project_docs "$PROJECT_DIR" "$THEME_DIR" "$PLUGIN_DIR"
 
 printf 'Generated project: %s\n' "$PROJECT_DIR"
