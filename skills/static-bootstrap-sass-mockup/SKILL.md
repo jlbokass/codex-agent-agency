@@ -20,6 +20,10 @@ project from the scaffold. It does not install dependencies, initialize Git,
 create GitHub repositories, use Vite, use Webpack, or add backend/CMS-specific
 files.
 
+An interactive orchestrator is available at
+`scripts/bootstrap-static-mockup.sh`. It prompts for project details, calls the
+generator script, and can optionally run `npm install` and `npm run dev`.
+
 Vite is not used by default. Webpack is not used by default. JavaScript bundling
 is not used by default. Vite or Webpack may be considered later only for
 projects that justify that additional tooling.
@@ -69,10 +73,9 @@ The future mockup workflow should produce:
 - `src/scss/`
 - `src/scss/abstracts/_variables.scss`
 - `src/scss/abstracts/_mixins.scss`
-- `src/js/main.js`
 - `public/` HTML pages
 - SCSS architecture
-- JavaScript entry point
+- JavaScript entry point at `assets/js/main.js`
 - assets folder
 - `assets/css/`
 - `assets/js/`

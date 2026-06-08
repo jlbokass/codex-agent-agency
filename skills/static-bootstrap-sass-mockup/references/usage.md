@@ -1,10 +1,33 @@
 # Usage Guide
 
-Use `scripts/create-static-mockup.sh` to generate a local static HTML, SCSS,
-Bootstrap-through-Sass, BrowserSync, and JavaScript mockup from the reusable
-scaffold.
+Use `scripts/bootstrap-static-mockup.sh` for the recommended interactive
+workflow. Use `scripts/create-static-mockup.sh` directly when you already know
+all values and want manual generation.
 
-## Recommended Generation Command
+Both scripts generate a local static HTML, SCSS, Bootstrap-through-Sass,
+BrowserSync, and JavaScript mockup from the reusable scaffold.
+
+## Recommended Interactive Usage
+
+```bash
+skills/static-bootstrap-sass-mockup/scripts/bootstrap-static-mockup.sh
+```
+
+The interactive bootstrap asks for:
+
+- project name
+- project slug
+- author name
+- pages to create
+- output directory
+- whether to run `npm install`
+- whether to run `npm run dev`
+
+If `npm run dev` is selected, the script starts it only after dependencies have
+been installed by the script. The terminal remains occupied by BrowserSync and
+Sass watch until the dev command is stopped.
+
+## Manual Generator Usage
 
 ```bash
 skills/static-bootstrap-sass-mockup/scripts/create-static-mockup.sh \
