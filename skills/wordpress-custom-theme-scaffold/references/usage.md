@@ -12,8 +12,8 @@ skills/wordpress-custom-theme-scaffold/scripts/bootstrap-wp-custom-project.sh
 
 The orchestrator prompts for project values, calls
 `scripts/create-wp-custom-theme.sh`, and optionally calls
-`scripts/link-localwp.sh`, `scripts/init-git-project.sh`, and
-`scripts/create-github-repo.sh`.
+`scripts/link-localwp.sh` plus the shared Git/GitHub helpers in
+`scripts/project-git/`.
 
 Generated projects include:
 
@@ -76,7 +76,7 @@ Interactive bootstrap asks whether to initialize Git after local project
 generation. When enabled, it calls:
 
 ```bash
-skills/wordpress-custom-theme-scaffold/scripts/init-git-project.sh \
+scripts/project-git/init-git-project.sh \
   --project-dir "/Users/jean-le-grandbokassa/Sites/example-project" \
   --initial-branch main \
   --commit-message "Initial commit"
@@ -84,7 +84,8 @@ skills/wordpress-custom-theme-scaffold/scripts/init-git-project.sh \
 
 The Git helper fails if the project directory does not exist or already contains
 a `.git` directory. The generated root `.gitignore` is included before Git
-initialization.
+initialization. Skill-local Git scripts are compatibility wrappers only; shared
+Git behavior should live in `scripts/project-git/`.
 
 ## GitHub Repository Creation
 
@@ -106,7 +107,7 @@ gh auth login
 Manual usage:
 
 ```bash
-skills/wordpress-custom-theme-scaffold/scripts/create-github-repo.sh \
+scripts/project-git/create-github-repo.sh \
   --project-dir "/Users/jean-le-grandbokassa/Sites/example-project" \
   --repo-name example-project \
   --visibility private \
@@ -118,6 +119,14 @@ Visibility choices:
 
 - `private` - default; use for client work or private experiments.
 - `public` - use only when the repository is intentionally public-safe.
+
+Safe failure cases:
+
+- GitHub creation is skipped safely when requested without Git initialization.
+- GitHub creation fails clearly if GitHub CLI is missing.
+- GitHub creation fails clearly if `gh auth status` does not succeed.
+- GitHub creation fails clearly if the configured remote already exists.
+- No credentials, tokens, or secrets are stored by the helpers.
 
 ## Complete Pharmacie Demo Example
 

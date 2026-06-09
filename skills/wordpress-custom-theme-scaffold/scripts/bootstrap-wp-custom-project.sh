@@ -40,11 +40,12 @@ Interactive options may be prefilled with long options:
 This orchestrator calls:
   scripts/create-wp-custom-theme.sh
   scripts/link-localwp.sh when Local WP linking is requested
-  scripts/init-git-project.sh when Git initialization is requested
-  scripts/create-github-repo.sh when GitHub repository creation is requested
+  ../../../scripts/project-git/init-git-project.sh when Git initialization is requested
+  ../../../scripts/project-git/create-github-repo.sh when GitHub repository creation is requested
 
 Git and GitHub automation are optional. This script does not store credentials,
-modify scaffold files, or duplicate placeholder replacement or symlink logic.
+modify scaffold files, or duplicate placeholder replacement, symlink, Git, or
+GitHub logic.
 USAGE
 }
 
@@ -390,15 +391,16 @@ while [[ $# -gt 0 ]]; do
 done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 CREATE_SCRIPT="$SCRIPT_DIR/create-wp-custom-theme.sh"
 LINK_SCRIPT="$SCRIPT_DIR/link-localwp.sh"
-INIT_GIT_SCRIPT="$SCRIPT_DIR/init-git-project.sh"
-GITHUB_SCRIPT="$SCRIPT_DIR/create-github-repo.sh"
+INIT_GIT_SCRIPT="$REPO_DIR/scripts/project-git/init-git-project.sh"
+GITHUB_SCRIPT="$REPO_DIR/scripts/project-git/create-github-repo.sh"
 
 [[ -x "$CREATE_SCRIPT" ]] || error "Generator script is not executable: $CREATE_SCRIPT"
 [[ -x "$LINK_SCRIPT" ]] || error "Local WP link script is not executable: $LINK_SCRIPT"
-[[ -x "$INIT_GIT_SCRIPT" ]] || error "Git init script is not executable: $INIT_GIT_SCRIPT"
-[[ -x "$GITHUB_SCRIPT" ]] || error "GitHub repo script is not executable: $GITHUB_SCRIPT"
+[[ -x "$INIT_GIT_SCRIPT" ]] || error "Shared Git helper is not executable: $INIT_GIT_SCRIPT"
+[[ -x "$GITHUB_SCRIPT" ]] || error "Shared GitHub helper is not executable: $GITHUB_SCRIPT"
 
 printf 'WordPress custom project bootstrap\n'
 printf '%s\n' '----------------------------------'
@@ -547,8 +549,27 @@ if [[ "$INIT_GIT" -eq 1 ]]; then
 fi
 
 if [[ "$CREATE_GITHUB" -eq 1 ]]; then
+  printf 'GitHub repository created: yes\n'
   printf 'GitHub repository: %s\n' "$REPO_NAME"
   printf 'Repository visibility: %s\n' "$VISIBILITY"
+
+  if [[ -n "$GITHUB_REMOTE_URL" ]]; then
+    printf 'Repository URL: %s\n' "$GITHUB_REMOTE_URL"
+  fi
+fi
+
+if [[ "$LINK_LOCALWP" -eq 1 ]]; then
+  printf 'Local WP symlinks created: yes\n'
+else
+  printf 'Local WP symlinks created: no\n'
+fi
+
+if [[ "$INIT_GIT" -ne 1 ]]; then
+  printf 'Git initialized: no\n'
+fi
+
+if [[ "$CREATE_GITHUB" -ne 1 ]]; then
+  printf 'GitHub repository created: no\n'
 fi
 
 printf '\nNext WordPress admin actions:\n'

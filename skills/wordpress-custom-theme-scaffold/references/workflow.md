@@ -4,8 +4,8 @@ This reference describes the intended execution flow for the WordPress custom
 theme scaffold skill. The recommended interactive path is
 `scripts/bootstrap-wp-custom-project.sh`, which calls
 `scripts/create-wp-custom-theme.sh` and optionally calls
-`scripts/link-localwp.sh`, `scripts/init-git-project.sh`, and
-`scripts/create-github-repo.sh`.
+`scripts/link-localwp.sh` plus the shared Git/GitHub helpers in
+`scripts/project-git/`.
 
 ## Steps
 
@@ -86,7 +86,8 @@ theme scaffold skill. The recommended interactive path is
      generation.
    - Confirm the initial branch name, default `main`.
    - Confirm the initial commit message, default `Initial commit`.
-   - The bootstrap script calls `scripts/init-git-project.sh`.
+   - The bootstrap script calls `scripts/project-git/init-git-project.sh`.
+   - Do not duplicate Git initialization logic in the WordPress orchestrator.
    - The Git helper runs `git init -b`, `git add .`, and `git commit -m`.
    - The Git helper fails if the project directory is already a Git repository.
 
@@ -97,7 +98,8 @@ theme scaffold skill. The recommended interactive path is
    - Confirm the repository name, default project slug.
    - Confirm repository visibility, default `private`.
    - Confirm the optional repository description.
-   - The bootstrap script calls `scripts/create-github-repo.sh`.
+   - The bootstrap script calls `scripts/project-git/create-github-repo.sh`.
+   - Do not duplicate GitHub CLI logic in the WordPress orchestrator.
    - The GitHub helper requires GitHub CLI (`gh`) to be installed.
    - The GitHub helper requires `gh auth status` to succeed.
    - The GitHub helper fails if the requested remote already exists.
@@ -108,5 +110,7 @@ theme scaffold skill. The recommended interactive path is
    - Show the generated project path.
    - Show theme and plugin paths.
    - Show Local WP symlink status when applicable.
-   - Show Git and GitHub status when applicable.
+   - Show Local WP symlink status, including when symlinks were not created.
+   - Show Git and GitHub status, including when they were not created.
+   - Show repository name, visibility, and URL when available.
    - List manual checks needed before WordPress activation.

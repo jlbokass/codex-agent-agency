@@ -13,7 +13,8 @@ setup.
 This skill now includes an interactive orchestrator:
 `scripts/bootstrap-wp-custom-project.sh`. Use it for the recommended end-to-end
 local workflow. It prompts for project values, calls the local generator, and
-optionally calls the Local WP symlink helper.
+optionally calls the Local WP symlink helper and the shared Git/GitHub helpers
+in `scripts/project-git/`.
 
 This skill also includes a local generator script:
 `scripts/create-wp-custom-theme.sh`. The script generates a local project folder
@@ -27,10 +28,12 @@ optionally its companion plugin, into an existing Local WP site. It does not
 initialize Git, create GitHub repositories, push code, or generate scaffold
 files.
 
-Git initialization is handled by `scripts/init-git-project.sh`. GitHub
-repository creation is handled by `scripts/create-github-repo.sh`, which uses
+Git initialization is handled by the shared helper
+`scripts/project-git/init-git-project.sh`. GitHub repository creation is handled
+by the shared helper `scripts/project-git/create-github-repo.sh`, which uses
 GitHub CLI and requires `gh auth status` to succeed. These steps are optional
-and never store credentials in the repository.
+and never store credentials in the repository. Skill-local Git/GitHub scripts
+are compatibility wrappers only.
 
 For the detailed workflow, read `references/workflow.md`. For command examples
 and troubleshooting, read `references/usage.md`.
