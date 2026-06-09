@@ -22,10 +22,64 @@ The interactive bootstrap asks for:
 - output directory
 - whether to run `npm install`
 - whether to run `npm run dev`
+- whether to initialize Git
+- initial branch name
+- initial commit message
+- whether to create a GitHub repository
+- repository name
+- repository visibility
+- repository description
 
 If `npm run dev` is selected, the script starts it only after dependencies have
 been installed by the script. The terminal remains occupied by BrowserSync and
 Sass watch until the dev command is stopped.
+
+## Git Initialization
+
+The interactive bootstrap can initialize Git after the static project is
+generated. If selected, it calls the shared helper:
+
+```bash
+scripts/project-git/init-git-project.sh
+```
+
+Defaults:
+
+- initial branch: `main`
+- initial commit message: `Initial commit`
+
+Git initialization fails safely if the generated project is already a Git
+repository.
+
+## GitHub Repository Creation
+
+The interactive bootstrap can create a GitHub repository after Git
+initialization. If selected, it calls the shared helper:
+
+```bash
+scripts/project-git/create-github-repo.sh
+```
+
+Defaults:
+
+- repository name: project slug
+- repository visibility: `private`
+
+Allowed visibility values are `private` and `public`. Use `private` for work
+that should not be visible publicly. Use `public` only when the repository is
+intended to be open.
+
+GitHub repository creation requires GitHub CLI:
+
+```bash
+gh auth status
+```
+
+If `gh` is missing or not authenticated, the shared helper fails clearly. The
+scripts do not store credentials, tokens, or secrets.
+
+If GitHub repository creation is requested without Git being initialized, the
+interactive bootstrap skips GitHub creation safely and prints a clear message.
 
 ## Manual Generator Usage
 
@@ -95,6 +149,14 @@ warnings are hidden with `--quiet-deps`.
 - `Page slug must use lowercase letters, numbers, and hyphens only`: check the
   comma-separated `--pages` value.
 - `npm run dev` does not start: run `npm install` first.
+- Git initialization fails: confirm the generated project does not already have
+  a `.git` directory.
+- GitHub repository creation fails because `gh` is missing: install GitHub CLI
+  and rerun the GitHub step manually.
+- GitHub repository creation fails because authentication is missing: run
+  `gh auth status`, then `gh auth login` if needed.
+- GitHub repository creation fails because the remote exists: inspect
+  `git remote -v` before retrying.
 - BrowserSync reports a busy port: check port 3000 with `lsof -i :3000` and
   port 3001 with `lsof -i :3001`; kill stale processes only when needed.
 - BrowserSync does not reload: confirm generated pages live in `public/` and

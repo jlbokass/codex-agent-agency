@@ -18,6 +18,8 @@ Interactive prompts collect:
   output directory
   whether to run npm install
   whether to run npm run dev after generation
+  whether to initialize Git
+  whether to create a GitHub repository
 
 Defaults:
   output directory: /Users/jean-le-grandbokassa/Sites
@@ -25,8 +27,9 @@ Defaults:
   pages: index,about,services,works,contact
 
 This orchestrator calls scripts/create-static-mockup.sh with the collected
-values. It does not initialize Git, create GitHub repositories, use Vite, use
-Webpack, or duplicate scaffold generation logic.
+values. Optional Git and GitHub automation delegates to the shared helpers in
+scripts/project-git/. It does not use Vite, use Webpack, or duplicate scaffold,
+Git, or GitHub logic.
 USAGE
 }
 
@@ -123,6 +126,20 @@ print_summary() {
   printf 'Pages created: %s\n' "$PAGES"
   printf 'npm install run: %s\n' "$NPM_INSTALL_STATUS"
   printf 'npm run dev started: %s\n' "$NPM_DEV_STATUS"
+  printf 'Git initialized: %s\n' "$GIT_INIT_STATUS"
+  printf 'GitHub repository created: %s\n' "$GITHUB_STATUS"
+
+  if [[ -n "$REPO_NAME" ]]; then
+    printf 'GitHub repository name: %s\n' "$REPO_NAME"
+  fi
+
+  if [[ -n "$REPO_VISIBILITY" ]]; then
+    printf 'GitHub repository visibility: %s\n' "$REPO_VISIBILITY"
+  fi
+
+  if [[ -n "$REPOSITORY_URL" ]]; then
+    printf 'GitHub repository URL: %s\n' "$REPOSITORY_URL"
+  fi
 }
 
 if [[ $# -gt 0 ]]; then
@@ -138,9 +155,14 @@ if [[ $# -gt 0 ]]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 CREATE_SCRIPT="$SCRIPT_DIR/create-static-mockup.sh"
+INIT_GIT_SCRIPT="$REPO_DIR/scripts/project-git/init-git-project.sh"
+CREATE_GITHUB_SCRIPT="$REPO_DIR/scripts/project-git/create-github-repo.sh"
 
 [[ -x "$CREATE_SCRIPT" ]] || error "Generator script is not executable: $CREATE_SCRIPT"
+[[ -x "$INIT_GIT_SCRIPT" ]] || error "Shared Git helper is not executable: $INIT_GIT_SCRIPT"
+[[ -x "$CREATE_GITHUB_SCRIPT" ]] || error "Shared GitHub helper is not executable: $CREATE_GITHUB_SCRIPT"
 
 printf 'Static Bootstrap Sass mockup bootstrap\n'
 printf '%s\n' '--------------------------------------'
@@ -174,6 +196,48 @@ printf '\nGenerating static mockup project...\n'
 PROJECT_PATH="$OUTPUT_DIR/$PROJECT_SLUG"
 NPM_INSTALL_STATUS="no"
 NPM_DEV_STATUS="no"
+GIT_INIT_STATUS="no"
+GITHUB_STATUS="no"
+REPO_NAME=""
+REPO_VISIBILITY=""
+REPOSITORY_URL=""
+
+if prompt_yes_no "Initialize Git repository" "no"; then
+  INITIAL_BRANCH="$(prompt_value "Initial branch name" "main" 1)"
+  COMMIT_MESSAGE="$(prompt_value "Initial commit message" "Initial commit" 1)"
+
+  printf '\nInitializing Git repository...\n'
+  "$INIT_GIT_SCRIPT" \
+    --project-dir "$PROJECT_PATH" \
+    --initial-branch "$INITIAL_BRANCH" \
+    --commit-message "$COMMIT_MESSAGE"
+  GIT_INIT_STATUS="yes"
+fi
+
+if prompt_yes_no "Create GitHub repository" "no"; then
+  if [[ "$GIT_INIT_STATUS" != "yes" ]]; then
+    printf '\nSkipping GitHub repository creation because Git was not initialized by this script.\n' >&2
+  else
+    REPO_NAME="$(prompt_value "GitHub repository name" "$PROJECT_SLUG" 1)"
+    REPO_VISIBILITY="$(prompt_value "Repository visibility" "private" 1)"
+    REPO_DESCRIPTION="$(prompt_value "Repository description" "" 0)"
+
+    github_args=(
+      --project-dir "$PROJECT_PATH"
+      --repo-name "$REPO_NAME"
+      --visibility "$REPO_VISIBILITY"
+    )
+
+    if [[ -n "$REPO_DESCRIPTION" ]]; then
+      github_args+=(--description "$REPO_DESCRIPTION")
+    fi
+
+    printf '\nCreating GitHub repository...\n'
+    "$CREATE_GITHUB_SCRIPT" "${github_args[@]}"
+    GITHUB_STATUS="yes"
+    REPOSITORY_URL="$(git -C "$PROJECT_PATH" remote get-url origin 2>/dev/null || true)"
+  fi
+fi
 
 if [[ "$RUN_NPM_INSTALL" -eq 1 ]]; then
   printf '\nInstalling npm dependencies...\n'

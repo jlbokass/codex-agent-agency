@@ -4,8 +4,8 @@ This reference describes the intended execution flow for the static Bootstrap
 and Sass mockup skill. A first reusable scaffold now exists at
 `scaffolds/static-bootstrap-sass/`. Local project generation is now handled by
 `scripts/create-static-mockup.sh`. Interactive generation is handled by
-`scripts/bootstrap-static-mockup.sh`. Git initialization and GitHub repository
-creation remain future steps.
+`scripts/bootstrap-static-mockup.sh`. Optional Git and GitHub automation is
+handled through the shared helpers in `scripts/project-git/`.
 
 The default future tooling is npm scripts, Sass CLI, and BrowserSync. Vite,
 Webpack, and JavaScript bundling are not default choices and should be
@@ -21,6 +21,8 @@ considered later only when a project clearly justifies them.
      `npm run dev`.
    - The script delegates project generation to `scripts/create-static-mockup.sh`
      instead of duplicating scaffold copy or placeholder replacement logic.
+   - The script delegates optional Git and GitHub automation to
+     `scripts/project-git/`.
    - If `npm run dev` is selected, the script explains that the terminal will
      stay occupied by BrowserSync and Sass watch.
 
@@ -38,8 +40,10 @@ considered later only when a project clearly justifies them.
    - Ask whether JavaScript interactions should be included.
    - Ask whether jQuery should be included.
    - Ask whether BrowserSync should be included.
-   - Ask whether Git initialization should be handled later.
-   - Ask whether GitHub repository creation should be handled later.
+   - Ask whether Git should be initialized.
+   - Ask whether GitHub repository creation should be handled.
+   - Ask for repository name, visibility, and description when GitHub creation
+     is requested.
 
 3. Validate project slug
    - Ensure the project slug uses lowercase letters, numbers, and hyphens.
@@ -72,13 +76,32 @@ considered later only when a project clearly justifies them.
      unused default pages.
    - Review generated names for consistency.
 
-7. Install dependencies when requested
+7. Initialize Git when requested
+   - Git initialization is optional.
+   - If selected, call `scripts/project-git/init-git-project.sh`.
+   - Ask for the initial branch name, defaulting to `main`.
+   - Ask for the initial commit message, defaulting to `Initial commit`.
+   - Do not duplicate Git initialization logic in the static orchestrator.
+
+8. Create GitHub repository when requested
+   - GitHub repository creation is optional.
+   - If selected, call `scripts/project-git/create-github-repo.sh`.
+   - Ask for repository name, defaulting to the project slug.
+   - Ask for repository visibility, defaulting to `private`.
+   - Ask for an optional repository description.
+   - Require GitHub CLI to be installed and authenticated; the shared helper
+     performs the validation.
+   - If Git was not initialized by the orchestrator, skip GitHub creation safely
+     with a clear message.
+   - Do not store credentials or tokens.
+
+9. Install dependencies when requested
    - The interactive orchestrator can run `npm install` after generation.
    - Manual users can enter the generated project directory and run
      `npm install`.
    - Dependency installation remains optional.
 
-8. Run local dev server when requested
+10. Run local dev server when requested
    - The interactive orchestrator can run `npm run dev` only after dependencies
      are installed by the script.
    - The default dev server uses BrowserSync, not Vite or Webpack.
@@ -88,19 +111,14 @@ considered later only when a project clearly justifies them.
    - `npm run watch:scss` should run Sass watch.
    - `npm run build` should compile production CSS.
 
-9. Initialize Git later
-   - Git initialization is a future optional step.
-   - Do not initialize Git in this workflow step.
-
-10. Create GitHub repository later
-   - GitHub repository creation is a future optional step.
-   - Do not create remotes or push code in this workflow step.
-
 11. Display final next steps
     - Show the generated project path.
     - Show included pages.
     - Show whether Bootstrap, Sass, and JavaScript were included.
     - Show whether jQuery, BrowserSync, and custom mixins were included.
+    - Show whether Git was initialized.
+    - Show whether a GitHub repository was created.
+    - Show repository name, visibility, and URL when available.
     - Show whether `npm install` was run.
     - Show whether `npm run dev` was started.
     - Show remaining manual setup steps.

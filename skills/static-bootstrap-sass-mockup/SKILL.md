@@ -22,7 +22,9 @@ files.
 
 An interactive orchestrator is available at
 `scripts/bootstrap-static-mockup.sh`. It prompts for project details, calls the
-generator script, and can optionally run `npm install` and `npm run dev`.
+generator script, can optionally initialize Git and create a GitHub repository
+through the shared helpers in `scripts/project-git/`, and can optionally run
+`npm install` and `npm run dev`.
 
 Vite is not used by default. Webpack is not used by default. JavaScript bundling
 is not used by default. Vite or Webpack may be considered later only for
@@ -59,8 +61,9 @@ Collect and confirm these inputs before generating files:
 - whether JavaScript interactions should be included
 - whether jQuery should be included
 - whether BrowserSync should be included
-- whether Git should be initialized later
-- whether GitHub repository creation should be handled later
+- whether Git should be initialized
+- whether GitHub repository creation should be handled
+- repository visibility when GitHub repository creation is requested
 
 ## Expected Outputs
 
@@ -82,6 +85,8 @@ The future mockup workflow should produce:
 - documentation folder
 - root `README.md`
 - root `.gitignore`
+- optional Git repository
+- optional GitHub remote
 
 ## Expected npm Scripts
 
