@@ -15,7 +15,9 @@ This repository intentionally stores only shareable operating instructions, work
 - `skills/` - executable or semi-executable Codex workflows for repeatable procedures, including WordPress scaffold and static mockup workflow definitions.
 - `scaffolds/` - reusable generated-code templates and project fragments.
 - `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
-- `scripts/` - sync utilities for backing up and restoring the public-safe Codex assets.
+- `scripts/` - sync utilities and shared project automation helpers.
+- `scripts/project-git/` - stack-agnostic Git/GitHub helpers that skills may
+  call without adding stack-specific assumptions.
 
 ## Sync Scripts
 
@@ -38,6 +40,13 @@ Apply the restore/sync to `~/.codex`:
 ```
 
 Both scripts use a strict allowlist and only touch the public-safe paths listed above.
+
+## Shared Project Scripts
+
+`scripts/project-git/` contains stack-agnostic Git and GitHub automation helpers
+for generated projects. Skills may call these helpers from WordPress, static
+mockup, Symfony, Laravel, Astro, or future workflows, but the helpers themselves
+must not contain stack-specific assumptions.
 
 ## GitHub Workflow
 
