@@ -7,6 +7,10 @@ all values and want manual generation.
 Both scripts generate a local static HTML, SCSS, Bootstrap-through-Sass,
 BrowserSync, and JavaScript mockup from the reusable scaffold.
 
+Generated static projects are Netlify-ready: `public/` is a self-contained
+publish directory and `netlify.toml` prepares the future deployment workflow.
+Netlify deployment is not automated yet.
+
 ## Recommended Interactive Usage
 
 ```bash
@@ -126,8 +130,8 @@ npm run dev
 ```
 
 `npm run dev` runs Sass in watch mode and starts BrowserSync. BrowserSync serves
-the project root, opens `public/index.html`, and reloads on HTML, CSS, and
-JavaScript changes.
+`public/`, opens `public/index.html`, and reloads on HTML, CSS, and JavaScript
+changes.
 
 ## Build CSS
 
@@ -135,10 +139,20 @@ JavaScript changes.
 npm run build
 ```
 
-SCSS compiles from `src/scss/main.scss` to `assets/css/main.css`. The generated
-project does not use Vite or Webpack. JavaScript is simple, unbundled, and
-edited directly in `assets/js/main.js`. Bootstrap Sass dependency deprecation
-warnings are hidden with `--quiet-deps`.
+SCSS compiles from `src/scss/main.scss` to `public/assets/css/main.css`. The
+generated project does not use Vite or Webpack. JavaScript is simple,
+unbundled, and edited directly in `public/assets/js/main.js`. Bootstrap Sass
+dependency deprecation warnings are hidden with `--quiet-deps`.
+
+## Netlify-Ready Output
+
+Generated projects include `netlify.toml` with:
+
+- build command: `npm run build`
+- publish directory: `public`
+
+This prepares the project for a future Netlify deployment workflow. It does not
+run `netlify init`, `netlify deploy`, or any CI/CD automation.
 
 ## Troubleshooting
 
@@ -160,4 +174,4 @@ warnings are hidden with `--quiet-deps`.
 - BrowserSync reports a busy port: check port 3000 with `lsof -i :3000` and
   port 3001 with `lsof -i :3001`; kill stale processes only when needed.
 - BrowserSync does not reload: confirm generated pages live in `public/` and
-  compiled CSS lives in `assets/css/main.css`.
+  compiled CSS lives in `public/assets/css/main.css`.

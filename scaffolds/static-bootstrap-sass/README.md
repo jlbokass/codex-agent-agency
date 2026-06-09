@@ -17,18 +17,31 @@ or transpilation by default.
 
 ## Structure
 
-- `public/` contains static HTML pages.
+- `public/` contains static HTML pages and runtime assets. It is the
+  publishable directory.
+- `public/assets/css/` is the compiled CSS output target.
+- `public/assets/js/main.js` is edited directly and loaded by static pages.
+- `public/assets/images/` is reserved for mockup imagery.
 - `src/scss/` contains source Sass files.
-- `assets/css/` is the compiled CSS output target.
-- `assets/js/main.js` is edited directly and loaded by static pages.
-- `assets/images/` is reserved for mockup imagery.
+- `netlify.toml` configures the future Netlify build and publish settings.
 
 ## Development Server
 
-- BrowserSync serves the project root.
+- BrowserSync serves `public/`.
 - Pages are opened from `public/index.html`.
-- SCSS compiles from `src/scss/main.scss` to `assets/css/main.css`.
-- JavaScript is edited directly in `assets/js/main.js`.
+- SCSS compiles from `src/scss/main.scss` to `public/assets/css/main.css`.
+- JavaScript is edited directly in `public/assets/js/main.js`.
+
+## Build
+
+```bash
+npm run build
+```
+
+Netlify settings:
+
+- build command: `npm run build`
+- publish directory: `public`
 
 ## Troubleshooting
 

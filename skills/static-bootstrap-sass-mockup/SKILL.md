@@ -78,10 +78,13 @@ The future mockup workflow should produce:
 - `src/scss/abstracts/_mixins.scss`
 - `public/` HTML pages
 - SCSS architecture
-- JavaScript entry point at `assets/js/main.js`
+- JavaScript entry point at `public/assets/js/main.js`
 - assets folder
-- `assets/css/`
-- `assets/js/`
+- `public/assets/css/`
+- `public/assets/js/`
+- `public/assets/images/`
+- Netlify-ready `public/` publish directory
+- `netlify.toml`
 - documentation folder
 - root `README.md`
 - root `.gitignore`

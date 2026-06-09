@@ -202,7 +202,7 @@ write_generic_page() {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{PROJECT_NAME}} | $page_title</title>
-  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
   <header class="site-header">
@@ -244,7 +244,7 @@ write_generic_page() {
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
 EOF
@@ -303,11 +303,12 @@ integration.
 
 ## Project Structure
 
-- \`public/\` - static HTML pages.
+- \`public/\` - static HTML pages and runtime assets; this is the publishable directory.
+- \`public/assets/css/\` - compiled CSS output.
+- \`public/assets/js/main.js\` - simple JavaScript edited directly and loaded by static pages.
+- \`public/assets/images/\` - mockup image assets.
 - \`src/scss/\` - source SCSS architecture.
-- \`assets/css/\` - compiled CSS output.
-- \`assets/js/main.js\` - simple JavaScript edited directly and loaded by static pages.
-- \`assets/images/\` - mockup image assets.
+- \`netlify.toml\` - future Netlify build and publish configuration.
 
 ## Pages
 
@@ -334,10 +335,11 @@ npm run build
 
 ## Frontend Workflow
 
-- BrowserSync serves the project root and opens \`public/index.html\`.
+- BrowserSync serves \`public/\` and opens \`public/index.html\`.
 - SCSS source files live in \`src/scss/\`.
-- Compiled CSS is generated at \`assets/css/main.css\`.
-- JavaScript is simple, unbundled, and edited directly in \`assets/js/main.js\`.
+- Compiled CSS is generated at \`public/assets/css/main.css\`.
+- JavaScript is simple, unbundled, and edited directly in \`public/assets/js/main.js\`.
+- Netlify-ready output is prepared with \`npm run build\` and publish directory \`public\`.
 - Vite is not used.
 - Webpack is not used.
 - JavaScript bundling is not used by default.

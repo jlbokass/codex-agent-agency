@@ -55,6 +55,8 @@ considered later only when a project clearly justifies them.
    - The script creates the root project folder.
    - The script creates folders for source files, static pages, assets, and
      documentation.
+   - The generated `public/` directory is self-contained and ready to use as a
+     future Netlify publish directory.
    - Keep the structure framework-agnostic so it can be integrated later.
 
 5. Copy static scaffold files
@@ -66,6 +68,8 @@ considered later only when a project clearly justifies them.
    - Include small project-oriented mixins only when requested.
    - Include JavaScript entry files only when requested.
    - Include jQuery only when requested.
+   - Keep runtime assets under `public/assets/` so `public/` can be deployed as
+     a static publish directory.
 
 6. Replace placeholders
    - The script replaces `{{PROJECT_NAME}}`, `{{PROJECT_SLUG}}`,
@@ -110,6 +114,9 @@ considered later only when a project clearly justifies them.
    - `npm run serve` should start the local static server.
    - `npm run watch:scss` should run Sass watch.
    - `npm run build` should compile production CSS.
+   - `netlify.toml` prepares the future Netlify settings with build command
+     `npm run build` and publish directory `public`.
+   - Do not run Netlify deployment automation in this step.
 
 11. Display final next steps
     - Show the generated project path.
