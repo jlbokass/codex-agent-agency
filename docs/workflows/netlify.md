@@ -79,3 +79,17 @@ The static project must be a Git repository and must already have a remote.
 
 The helper runs `netlify status` and then `netlify init`. `netlify init` may ask
 interactive questions about team, site name, and repository connection.
+
+## Workflow Navigation
+
+- [Workflows Home](index.md)
+- [WordPress Custom Project](wordpress-custom-project.md)
+- [Static Mockup](static-mockup.md)
+- [Git and GitHub Helpers](git-github.md)
+
+## Documentation Navigation
+
+- [Documentation Home](../index.md)
+- [Quick Start](../quick-start.md)
+- [Command Reference](../command-reference.md)
+- [Troubleshooting](../troubleshooting.md)

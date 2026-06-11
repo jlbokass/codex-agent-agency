@@ -105,3 +105,13 @@ gh auth login
 ```
 
 GitHub repository creation will fail until `gh auth status` succeeds.
+
+## Documentation Navigation
+
+- [Documentation Home](index.md)
+- [Quick Start](quick-start.md)
+- [Folder Roles](folder-roles.md)
+- [Command Reference](command-reference.md)
+- [Aliases](aliases.md)
+- [Workflows](workflows/index.md)
+- [Roadmap](roadmap.md)

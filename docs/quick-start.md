@@ -74,3 +74,13 @@ Then initialize the Netlify site from a Git-backed static project:
 ./scripts/project-netlify/init-netlify-site.sh \
   --project-dir "/Users/jean-le-grandbokassa/Sites/example-static-mockup"
 ```
+
+## Documentation Navigation
+
+- [Documentation Home](index.md)
+- [Folder Roles](folder-roles.md)
+- [Command Reference](command-reference.md)
+- [Aliases](aliases.md)
+- [Workflows](workflows/index.md)
+- [Troubleshooting](troubleshooting.md)
+- [Roadmap](roadmap.md)

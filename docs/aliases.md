@@ -50,3 +50,13 @@ Usage:
 codex-git-init --project-dir "/path/to/project"
 codex-gh-create --project-dir "/path/to/project" --repo-name example-project
 ```
+
+## Documentation Navigation
+
+- [Documentation Home](index.md)
+- [Quick Start](quick-start.md)
+- [Folder Roles](folder-roles.md)
+- [Command Reference](command-reference.md)
+- [Workflows](workflows/index.md)
+- [Troubleshooting](troubleshooting.md)
+- [Roadmap](roadmap.md)

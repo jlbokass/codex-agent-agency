@@ -66,3 +66,13 @@ troubleshooting, and roadmap.
 `README.md`
 : Short entry point that explains the repository purpose and links to the
 documentation hub.
+
+## Documentation Navigation
+
+- [Documentation Home](index.md)
+- [Quick Start](quick-start.md)
+- [Command Reference](command-reference.md)
+- [Aliases](aliases.md)
+- [Workflows](workflows/index.md)
+- [Troubleshooting](troubleshooting.md)
+- [Roadmap](roadmap.md)

@@ -74,3 +74,17 @@ netlify login
 ./scripts/project-netlify/init-netlify-site.sh \
   --project-dir "/Users/jean-le-grandbokassa/Sites/example-static-mockup"
 ```
+
+## Workflow Navigation
+
+- [Workflows Home](index.md)
+- [WordPress Custom Project](wordpress-custom-project.md)
+- [Git and GitHub Helpers](git-github.md)
+- [Netlify Workflow](netlify.md)
+
+## Documentation Navigation
+
+- [Documentation Home](../index.md)
+- [Quick Start](../quick-start.md)
+- [Command Reference](../command-reference.md)
+- [Troubleshooting](../troubleshooting.md)

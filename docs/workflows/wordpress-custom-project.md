@@ -89,3 +89,17 @@ GitHub creation requires GitHub CLI authentication:
 ```bash
 gh auth status
 ```
+
+## Workflow Navigation
+
+- [Workflows Home](index.md)
+- [Static Mockup](static-mockup.md)
+- [Git and GitHub Helpers](git-github.md)
+- [Netlify Workflow](netlify.md)
+
+## Documentation Navigation
+
+- [Documentation Home](../index.md)
+- [Quick Start](../quick-start.md)
+- [Command Reference](../command-reference.md)
+- [Troubleshooting](../troubleshooting.md)

@@ -20,6 +20,8 @@ files here help developers and Codex work from the same conventions.
 - [Command Reference](command-reference.md) - documented usage for the shared
   bootstrap, Git/GitHub, and Netlify helper scripts.
 - [Aliases](aliases.md) - optional shell aliases for frequently used commands.
+- [Workflows](workflows/index.md) - repeatable project procedures for
+  WordPress, static mockups, Git/GitHub, and Netlify.
 - [Troubleshooting](troubleshooting.md) - common local setup, BrowserSync,
   Sass, Local WP, GitHub CLI, and Netlify CLI issues.
 - [Roadmap](roadmap.md) - next documentation, workflow, and integration steps.
@@ -30,3 +32,13 @@ files here help developers and Codex work from the same conventions.
 - [Static Mockup](workflows/static-mockup.md)
 - [Git and GitHub Helpers](workflows/git-github.md)
 - [Netlify Workflow](workflows/netlify.md)
+
+## Documentation Navigation
+
+- [Quick Start](quick-start.md)
+- [Folder Roles](folder-roles.md)
+- [Command Reference](command-reference.md)
+- [Aliases](aliases.md)
+- [Workflows](workflows/index.md)
+- [Troubleshooting](troubleshooting.md)
+- [Roadmap](roadmap.md)

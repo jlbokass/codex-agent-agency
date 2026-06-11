@@ -66,3 +66,17 @@ Use `public` only when the repository is intentionally public-safe.
 - GitHub creation fails if `gh auth status` does not succeed.
 - GitHub creation fails if the configured remote already exists.
 - GitHub creation fails if visibility is not `private` or `public`.
+
+## Workflow Navigation
+
+- [Workflows Home](index.md)
+- [WordPress Custom Project](wordpress-custom-project.md)
+- [Static Mockup](static-mockup.md)
+- [Netlify Workflow](netlify.md)
+
+## Documentation Navigation
+
+- [Documentation Home](../index.md)
+- [Quick Start](../quick-start.md)
+- [Command Reference](../command-reference.md)
+- [Troubleshooting](../troubleshooting.md)
