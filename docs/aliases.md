@@ -22,6 +22,9 @@ source ~/.zshrc
 
 ## Alias List
 
+The alias file resolves script paths from its own location, then points each
+alias directly at the executable workflow script.
+
 - `wpbootstrap` - WordPress custom project bootstrap.
 - `staticbootstrap` - static Bootstrap/Sass mockup bootstrap.
 - `netlifycheck` - Netlify readiness checker.
@@ -51,6 +54,19 @@ alias staticbootstrap
 alias netlifycheck
 alias netlifyinit
 alias netlifybootstrap
+```
+
+## Help Through Aliases
+
+Aliases point directly to the executable scripts, so `--help` and `-h` pass
+through:
+
+```zsh
+wpbootstrap --help
+staticbootstrap --help
+netlifycheck --help
+netlifyinit --help
+netlifybootstrap --help
 ```
 
 ## Documentation Navigation

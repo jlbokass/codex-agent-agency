@@ -2,7 +2,8 @@
 
 `aliases.zsh` contains versioned zsh aliases for the main Codex Agent Agency
 workflow commands. It is meant to be sourced manually or from a local shell
-profile. It does not edit shell configuration automatically.
+profile. It resolves command paths from its own location and does not edit shell
+configuration automatically.
 
 ## Available Aliases
 
@@ -48,4 +49,27 @@ alias staticbootstrap
 alias netlifycheck
 alias netlifyinit
 alias netlifybootstrap
+```
+
+## Show Command Help
+
+Aliases point directly to the executable scripts, so script arguments pass
+through normally:
+
+```zsh
+wpbootstrap --help
+staticbootstrap --help
+netlifycheck --help
+netlifyinit --help
+netlifybootstrap --help
+```
+
+Short help works too:
+
+```zsh
+wpbootstrap -h
+staticbootstrap -h
+netlifycheck -h
+netlifyinit -h
+netlifybootstrap -h
 ```

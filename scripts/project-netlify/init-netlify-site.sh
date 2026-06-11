@@ -8,7 +8,7 @@ Usage:
 
 Options:
   --project-dir    Existing static project directory. Required.
-  --help           Show this help message.
+  -h, --help       Show this help message.
 
 This stack-agnostic helper runs netlify init for a Git-backed static project.
 Netlify CLI may ask interactive questions. This script does not store Netlify
@@ -45,7 +45,7 @@ while [[ $# -gt 0 ]]; do
       PROJECT_DIR="$2"
       shift 2
       ;;
-    --help)
+    -h|--help)
       usage
       exit 0
       ;;

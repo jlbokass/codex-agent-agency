@@ -8,7 +8,7 @@ Usage:
 
 Options:
   --project-dir    Existing static project directory. Required.
-  --help           Show this help message.
+  -h, --help       Show this help message.
 
 This stack-agnostic helper validates that a static project is ready for the
 future Netlify workflow. It runs npm run build and confirms that the expected
@@ -39,7 +39,7 @@ while [[ $# -gt 0 ]]; do
       PROJECT_DIR="$2"
       shift 2
       ;;
-    --help)
+    -h|--help)
       usage
       exit 0
       ;;

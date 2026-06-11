@@ -7,7 +7,7 @@ Usage:
   bootstrap-netlify-site.sh
 
 Options:
-  --help    Show this help message.
+  -h, --help    Show this help message.
 
 Interactive Netlify workflow for static projects. The script can run the
 Netlify readiness check, initialize or link the project with Netlify for
@@ -104,7 +104,7 @@ DEFAULT_PROJECT_DIR="/Users/jean-le-grandbokassa/Sites"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --help)
+    -h|--help)
       usage
       exit 0
       ;;

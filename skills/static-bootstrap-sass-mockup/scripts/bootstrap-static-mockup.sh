@@ -8,7 +8,7 @@ DEFAULT_PAGES="index,about,services,works,contact"
 usage() {
   cat <<'USAGE'
 Usage:
-  bootstrap-static-mockup.sh [--help]
+  bootstrap-static-mockup.sh [-h|--help]
 
 Interactive prompts collect:
   project name
@@ -144,7 +144,7 @@ print_summary() {
 
 if [[ $# -gt 0 ]]; then
   case "$1" in
-    --help)
+    -h|--help)
       usage
       exit 0
       ;;
