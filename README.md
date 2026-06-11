@@ -44,7 +44,13 @@ Check Netlify readiness:
   --project-dir "/path/to/static-project"
 ```
 
-Initialize a Netlify site:
+Run the interactive Netlify workflow:
+
+```bash
+./scripts/project-netlify/bootstrap-netlify-site.sh
+```
+
+Initialize a Netlify site with the low-level helper:
 
 ```bash
 ./scripts/project-netlify/init-netlify-site.sh \

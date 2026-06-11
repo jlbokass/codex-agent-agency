@@ -23,20 +23,30 @@ The expected Netlify settings are:
 
 ## Available Scripts
 
-- `check-netlify-ready.sh` validates a static project and runs `npm run build`.
-- `init-netlify-site.sh` validates Git/Netlify CLI state and runs
-  `netlify init` from the project directory.
+- `bootstrap-netlify-site.sh` is the recommended interactive command. It guides
+  the user through readiness checks, optional Netlify initialization/linking,
+  and optional manual deploy.
+- `check-netlify-ready.sh` is the low-level readiness checker. It validates a
+  static project and runs `npm run build`.
+- `init-netlify-site.sh` is the low-level Netlify init/link helper. It validates
+  Git/Netlify CLI state and runs `netlify init` from the project directory.
 
 ## Examples
 
-Check a project before Netlify setup:
+Recommended interactive workflow:
+
+```bash
+scripts/project-netlify/bootstrap-netlify-site.sh
+```
+
+Check a project before Netlify setup with the low-level readiness checker:
 
 ```bash
 scripts/project-netlify/check-netlify-ready.sh \
   --project-dir "/path/to/static-project"
 ```
 
-Initialize a Netlify site:
+Initialize or link a Netlify site with the low-level helper:
 
 ```bash
 scripts/project-netlify/init-netlify-site.sh \
@@ -66,6 +76,9 @@ site.
 site. The helper keeps `netlify init` as the command responsible for that
 project-linking step.
 
+Continuous deployment through `netlify init` is the preferred workflow. Manual
+deploys are optional and should be used only when intentionally needed.
+
 If `netlify status` confirms a current Netlify user but reports that the project
 is not linked yet, the helper continues to `netlify init`. If `netlify status`
 fails for another reason, the helper prints the captured output and suggests
@@ -78,7 +91,8 @@ and repository connection.
 
 - Deployment is optional.
 - Run Netlify setup only after Git and GitHub setup are complete.
-- Helpers do not run `netlify deploy`.
+- The interactive bootstrap defaults to continuous deployment setup and does
+  not run `netlify deploy` unless the user explicitly chooses a manual deploy.
 - Helpers do not add CI/CD scripts.
 - Helpers do not store Netlify tokens, credentials, or secrets in this
   repository.
