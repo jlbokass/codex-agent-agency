@@ -4,6 +4,12 @@ These commands are the main entry points for project generation and deployment
 preparation. Run them from the repository root unless a command changes into a
 generated project directory.
 
+Optional short aliases are available after sourcing the versioned alias file:
+
+```zsh
+source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+```
+
 ## WordPress Custom Project Bootstrap
 
 Interactive mode:

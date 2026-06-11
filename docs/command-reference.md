@@ -8,6 +8,12 @@ Run repository commands from the repository root unless noted otherwise.
 ./skills/wordpress-custom-theme-scaffold/scripts/bootstrap-wp-custom-project.sh
 ```
 
+Alias after sourcing `scripts/shell/aliases.zsh`:
+
+```bash
+wpbootstrap
+```
+
 Purpose: interactive orchestrator for generating a WordPress custom theme
 project, optional companion plugin, optional Local WP symlinks, optional Git
 initialization, and optional GitHub repository creation.
@@ -37,6 +43,12 @@ Common options:
 
 ```bash
 ./skills/static-bootstrap-sass-mockup/scripts/bootstrap-static-mockup.sh
+```
+
+Alias after sourcing `scripts/shell/aliases.zsh`:
+
+```bash
+staticbootstrap
 ```
 
 Purpose: interactive orchestrator for generating a static HTML, Sass,
@@ -90,6 +102,12 @@ Requirements:
   --project-dir "/path/to/static-project"
 ```
 
+Alias after sourcing `scripts/shell/aliases.zsh`:
+
+```bash
+netlifycheck --project-dir "/path/to/static-project"
+```
+
 Purpose: validate that a static project has the expected Netlify structure, run
 `npm run build`, and confirm `public/assets/css/main.css` exists.
 
@@ -107,6 +125,12 @@ Expected project files:
   --project-dir "/path/to/static-project"
 ```
 
+Alias after sourcing `scripts/shell/aliases.zsh`:
+
+```bash
+netlifyinit --project-dir "/path/to/static-project"
+```
+
 Purpose: validate Git and Netlify CLI state, then run `netlify init` from the
 project directory.
 
@@ -116,6 +140,21 @@ Requirements:
 - Project must have a Git remote.
 - Netlify CLI must be installed.
 - Netlify CLI must be authenticated with `netlify login`.
+
+## Interactive Netlify Bootstrap
+
+```bash
+./scripts/project-netlify/bootstrap-netlify-site.sh
+```
+
+Alias after sourcing `scripts/shell/aliases.zsh`:
+
+```bash
+netlifybootstrap
+```
+
+Purpose: guide the user through Netlify readiness checks, optional Netlify
+initialization/linking, and optional manual deploy.
 
 ## Documentation Navigation
 
