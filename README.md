@@ -1,60 +1,61 @@
 # Codex Agent Agency
 
-Clean, GitHub-ready backup of reusable Codex agent agency assets from `~/.codex`.
+Reusable Codex agents, prompts, workflows, skills, scaffolds, scripts,
+checklists, templates, and design-system guidance for local project work.
 
-This repository intentionally stores only shareable operating instructions, workflows, prompts, templates, scaffolds, skills, checklists, and design-system notes. It does not include credentials, sessions, logs, cache files, memories, local runtime configuration, tokens, or temporary state.
+This repository is a development command center: it keeps repeatable project
+generation and engineering procedures in one place without storing credentials,
+sessions, logs, cache files, tokens, or temporary runtime state.
 
-## Contents
+Detailed documentation lives in [docs/index.md](docs/index.md).
 
-- `AGENTS.md` - global Codex operating instructions.
-- `agents/` - specialized technical profiles for specific stacks, roles, and review modes.
-- `prompts/` - reusable task prompts for common engineering work.
-- `workflows/` - repeatable procedures for features, bug fixes, reviews, refactors, releases, and onboarding.
-- `checklists/` - quality gates for delivery, security, release readiness, and UI/UX checks.
-- `templates/` - reusable project instruction templates for copying into specific repositories, not generated code scaffolds.
-- `skills/` - executable or semi-executable Codex workflows for repeatable procedures, including WordPress scaffold and static mockup workflow definitions.
-- `scaffolds/` - reusable generated-code templates and project fragments.
-- `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
-- `scripts/` - sync utilities and shared project automation helpers.
-- `scripts/project-git/` - stack-agnostic Git/GitHub helpers that skills may
-  call without adding stack-specific assumptions.
+## Important Commands
 
-## Sync Scripts
-
-Refresh this repository from local Codex assets:
+WordPress custom project bootstrap:
 
 ```bash
-./scripts/backup-from-local.sh
+./skills/wordpress-custom-theme-scaffold/scripts/bootstrap-wp-custom-project.sh
 ```
 
-Preview restoring this repository back into `~/.codex`:
+Static mockup bootstrap:
 
 ```bash
-./scripts/sync-to-local.sh
+./skills/static-bootstrap-sass-mockup/scripts/bootstrap-static-mockup.sh
 ```
 
-Apply the restore/sync to `~/.codex`:
+Initialize Git for a generated project:
 
 ```bash
-./scripts/sync-to-local.sh --apply
+./scripts/project-git/init-git-project.sh --project-dir "/path/to/project"
 ```
 
-Both scripts use a strict allowlist and only touch the public-safe paths listed above.
-
-## Shared Project Scripts
-
-`scripts/project-git/` contains stack-agnostic Git and GitHub automation helpers
-for generated projects. Skills may call these helpers from WordPress, static
-mockup, Symfony, Laravel, Astro, or future workflows, but the helpers themselves
-must not contain stack-specific assumptions.
-
-## GitHub Workflow
-
-Before publishing, review the diff and verify that no private files were added:
+Create a GitHub repository for a generated Git project:
 
 ```bash
-git status
-git diff --stat
+./scripts/project-git/create-github-repo.sh \
+  --project-dir "/path/to/project" \
+  --repo-name example-project
 ```
 
-Then create a commit and add a GitHub remote when ready.
+Check Netlify readiness:
+
+```bash
+./scripts/project-netlify/check-netlify-ready.sh \
+  --project-dir "/path/to/static-project"
+```
+
+Run the interactive Netlify workflow:
+
+```bash
+./scripts/project-netlify/bootstrap-netlify-site.sh
+```
+
+Initialize a Netlify site with the low-level helper:
+
+```bash
+./scripts/project-netlify/init-netlify-site.sh \
+  --project-dir "/path/to/static-project"
+```
+
+Start with [the documentation hub](docs/index.md) for folder roles, workflow
+guides, command reference, aliases, troubleshooting, and roadmap.

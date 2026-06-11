@@ -35,7 +35,7 @@ Interactive options may be prefilled with long options:
   --description "Repository description"
   --remote-name origin
   --yes
-  --help
+  -h, --help
 
 This orchestrator calls:
   scripts/create-wp-custom-theme.sh
@@ -380,7 +380,7 @@ while [[ $# -gt 0 ]]; do
       ASSUME_YES=1
       shift
       ;;
-    --help)
+    -h|--help)
       usage
       exit 0
       ;;

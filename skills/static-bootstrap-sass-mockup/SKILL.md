@@ -24,7 +24,10 @@ An interactive orchestrator is available at
 `scripts/bootstrap-static-mockup.sh`. It prompts for project details, calls the
 generator script, can optionally initialize Git and create a GitHub repository
 through the shared helpers in `scripts/project-git/`, and can optionally run
-`npm install` and `npm run dev`.
+`npm install` and `npm run dev`. It can also optionally launch the shared
+Netlify bootstrap helper in `scripts/project-netlify/` to run readiness checks,
+link the generated static project through `netlify init`, and keep manual deploy
+optional.
 
 Vite is not used by default. Webpack is not used by default. JavaScript bundling
 is not used by default. Vite or Webpack may be considered later only for
@@ -64,6 +67,7 @@ Collect and confirm these inputs before generating files:
 - whether Git should be initialized
 - whether GitHub repository creation should be handled
 - repository visibility when GitHub repository creation is requested
+- whether Netlify setup should be launched through the shared helper
 
 ## Expected Outputs
 
@@ -90,6 +94,7 @@ The future mockup workflow should produce:
 - root `.gitignore`
 - optional Git repository
 - optional GitHub remote
+- optional Netlify connection through the shared helper
 
 ## Expected npm Scripts
 
@@ -112,3 +117,5 @@ HTML, CSS, and JavaScript changes.
 - This skill does not generate client-specific production content unless
   explicitly requested.
 - This skill focuses on frontend structure and visual validation.
+- This skill does not duplicate Netlify logic; optional Netlify setup delegates
+  to the shared project Netlify helper.
