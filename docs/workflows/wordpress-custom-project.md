@@ -3,6 +3,9 @@
 Use this workflow when creating a custom WordPress theme project, with an
 optional companion plugin and optional Local WP integration.
 
+This workflow has been validated end to end: theme/plugin generation, Local WP
+symlinks, WordPress activation, and Git/GitHub setup.
+
 ## 1. Create the Local WP Site First
 
 Create the site in Local WP before linking generated theme or plugin files. The

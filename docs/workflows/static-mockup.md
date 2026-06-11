@@ -3,6 +3,9 @@
 Use this workflow to create a static HTML, Sass, Bootstrap-through-Sass,
 BrowserSync, and JavaScript mockup.
 
+This workflow has been validated end to end: static project generation, npm
+workflow, Git/GitHub setup, Netlify connection, and client URL.
+
 ## 1. Run the Static Bootstrap Script
 
 ```bash

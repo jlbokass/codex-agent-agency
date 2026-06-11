@@ -1,12 +1,17 @@
 # Roadmap
 
-Planned next steps:
+## Completed
+
+- Connected the shared Netlify helper into the static orchestrator.
+- Validated the full static project path: static generation to npm workflow to
+  GitHub to Netlify to client URL.
+- Validated the full WordPress path: WordPress theme/plugin generation to Local
+  WP symlinks and activation to GitHub.
+
+## Next Steps
 
 - Enable GitHub Pages from `/docs` after merge to `main`.
 - Add shell aliases locally for the main bootstrap, GitHub, and Netlify helpers.
-- Connect the Netlify helper into the static orchestrator.
-- Test the full static project path: static generation to GitHub to Netlify.
-- Test the full WordPress path: WordPress generation to Local WP to GitHub.
 - Improve static UI components.
 - Add optional jQuery support.
 - Add static-to-WordPress integration prompts.
