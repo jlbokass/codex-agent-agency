@@ -106,6 +106,24 @@ gh auth login
 
 GitHub repository creation will fail until `gh auth status` succeeds.
 
+## Help Commands
+
+Main workflow scripts and their aliases support both `--help` and `-h`:
+
+```bash
+wpbootstrap --help
+staticbootstrap --help
+netlifycheck --help
+netlifyinit --help
+netlifybootstrap --help
+```
+
+If an alias is not found, source the aliases file first:
+
+```zsh
+source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+```
+
 ## Documentation Navigation
 
 - [Documentation Home](index.md)
