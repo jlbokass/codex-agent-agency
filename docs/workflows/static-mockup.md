@@ -6,6 +6,9 @@ BrowserSync, and JavaScript mockup.
 This workflow has been validated end to end: static project generation, npm
 workflow, Git/GitHub setup, Netlify connection, and client URL.
 
+Next step after client validation:
+[Static to WordPress Integration](static-to-wordpress-integration.md).
+
 ## 1. Run the Static Bootstrap Script
 
 ```bash
@@ -94,6 +97,7 @@ netlify login
 
 - [Workflows Home](index.md)
 - [WordPress Custom Project](wordpress-custom-project.md)
+- [Static to WordPress Integration](static-to-wordpress-integration.md)
 - [Git and GitHub Helpers](git-github.md)
 - [Netlify Workflow](netlify.md)
 

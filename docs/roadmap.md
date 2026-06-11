@@ -7,12 +7,12 @@
   GitHub to Netlify to client URL.
 - Validated the full WordPress path: WordPress theme/plugin generation to Local
   WP symlinks and activation to GitHub.
+- Documented the static mockup to WordPress template-parts integration workflow.
 
 ## Next Steps
 
 - Enable GitHub Pages from `/docs` after merge to `main`.
 - Add shell aliases locally for the main bootstrap, GitHub, and Netlify helpers.
-- Build out the static mockup to WordPress template-parts integration workflow.
 - Static-to-WordPress integration prompt now exists.
 - Static-to-WordPress review checklist now exists.
 - Improve static UI components.

@@ -1,0 +1,164 @@
+# Static to WordPress Integration Workflow
+
+Use this workflow to convert a validated static mockup into a maintainable
+WordPress custom theme while preserving the approved visual design and keeping
+content modeling decisions explicit.
+
+## When To Use This Workflow
+
+- Use it when a client has approved a static mockup.
+- Use it before integrating into a custom WordPress theme.
+- Use it when separating design, content modeling, and WordPress logic matters.
+
+## Do Not Use This Workflow When
+
+- There is no validated static mockup.
+- The project is not WordPress.
+- The client still expects major design changes.
+- The site is only a pure static website.
+
+## Inputs Required
+
+- Static mockup path.
+- WordPress project path.
+- Theme slug.
+- Optional plugin slug.
+- Pages to integrate.
+- Dynamic content notes.
+- CPT/taxonomy needs.
+- Asset strategy.
+
+## Output Expected
+
+- Page-to-template mapping.
+- Template-parts structure.
+- Migrated assets.
+- Dynamic content list.
+- CPT/taxonomy/plugin notes.
+- Review checklist result.
+
+## Recommended Command Sequence
+
+Generate and validate the static mockup:
+
+```bash
+staticbootstrap
+```
+
+Run local validation from the generated static project:
+
+```bash
+npm run dev
+```
+
+Connect or publish the validated static mockup for client review:
+
+```bash
+netlifybootstrap
+```
+
+Create the WordPress custom project after the static version is approved:
+
+```bash
+wpbootstrap
+```
+
+## Complete Workflow
+
+1. Generate a static mockup with `staticbootstrap`.
+2. Validate the static mockup locally with `npm run dev`.
+3. Publish or connect it to Netlify for client review.
+4. Collect client feedback.
+5. Freeze the validated static version before WordPress integration.
+6. Create a WordPress custom project with `wpbootstrap`.
+7. Create the theme and optional plugin.
+8. Create Local WP symlinks.
+9. Activate the theme and plugin in WordPress.
+10. Use the static-to-WordPress integration prompt.
+11. Review the integration plan before coding.
+12. Convert static pages into WordPress templates.
+13. Split reusable sections into `template-parts/`.
+14. Migrate SCSS, CSS, and JavaScript assets.
+15. Identify dynamic content.
+16. Place CPTs, taxonomies, metadata, admin customization, and business logic in
+    the plugin.
+17. Use the static-to-WordPress review checklist.
+18. Validate responsive behavior and WordPress safety.
+
+## Codex Prompt To Use
+
+Use the reusable prompt:
+
+```text
+prompts/integrate-static-mockup-into-wordpress.md
+```
+
+The prompt requires Codex to inspect both projects, present an integration plan,
+and wait for confirmation before coding unless implementation is explicitly
+requested immediately.
+
+## Review Checklist
+
+Use the shared review checklist after integration:
+
+```text
+checklists/static-to-wordpress-review.md
+```
+
+The checklist covers static review, template mapping, theme structure,
+plugin/content model boundaries, assets, WordPress safety, responsive behavior,
+and final verification.
+
+## Theme vs Plugin Boundary
+
+Theme responsibilities:
+
+- Presentation.
+- Templates and template parts.
+- Frontend assets.
+- Frontend rendering.
+
+Plugin responsibilities:
+
+- CPTs.
+- Taxonomies.
+- Metadata and custom fields.
+- Admin customization.
+- Business logic.
+
+Never place CPT registration in the theme. Content models and business behavior
+belong in the plugin so they survive theme changes.
+
+## Safety Rules
+
+- Preserve the validated design.
+- Do not blindly paste full static pages into one PHP file.
+- Use WordPress escaping functions.
+- Enqueue assets properly.
+- Check mobile navigation.
+- Avoid horizontal overflow.
+- Test with WordPress debug when needed.
+
+## Related Files
+
+- [Static Mockup Workflow](static-mockup.md)
+- [WordPress Custom Project Workflow](wordpress-custom-project.md)
+- [Netlify Workflow](netlify.md)
+- [Static to WordPress Skill](../../skills/static-to-wordpress-integration/SKILL.md)
+- [Integration Prompt](../../prompts/integrate-static-mockup-into-wordpress.md)
+- [Review Checklist](../../checklists/static-to-wordpress-review.md)
+
+## Workflow Navigation
+
+- [Workflows Home](index.md)
+- [Static Mockup](static-mockup.md)
+- [WordPress Custom Project](wordpress-custom-project.md)
+- [Git and GitHub Helpers](git-github.md)
+- [Netlify Workflow](netlify.md)
+
+## Documentation Navigation
+
+- [Documentation Home](../index.md)
+- [Quick Start](../quick-start.md)
+- [Command Reference](../command-reference.md)
+- [Troubleshooting](../troubleshooting.md)

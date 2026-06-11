@@ -6,6 +6,10 @@ optional companion plugin and optional Local WP integration.
 This workflow has been validated end to end: theme/plugin generation, Local WP
 symlinks, WordPress activation, and Git/GitHub setup.
 
+When starting from an approved static mockup, use the
+[Static to WordPress Integration](static-to-wordpress-integration.md) workflow
+before converting static pages into WordPress templates.
+
 ## 1. Create the Local WP Site First
 
 Create the site in Local WP before linking generated theme or plugin files. The
@@ -96,6 +100,7 @@ gh auth status
 ## Workflow Navigation
 
 - [Workflows Home](index.md)
+- [Static to WordPress Integration](static-to-wordpress-integration.md)
 - [Static Mockup](static-mockup.md)
 - [Git and GitHub Helpers](git-github.md)
 - [Netlify Workflow](netlify.md)
