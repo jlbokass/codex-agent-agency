@@ -14,6 +14,7 @@
 - Add shell aliases locally for the main bootstrap, GitHub, and Netlify helpers.
 - Build out the static mockup to WordPress template-parts integration workflow.
 - Static-to-WordPress integration prompt now exists.
+- Static-to-WordPress review checklist now exists.
 - Improve static UI components.
 - Add optional jQuery support.
 

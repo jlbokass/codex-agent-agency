@@ -1,6 +1,8 @@
 # Static to WordPress Integration Checklist
 
 Use this checklist before and during static-to-WordPress integration planning.
+After implementation, use the shared review checklist at
+`checklists/static-to-wordpress-review.md`.
 
 ## Review
 
