@@ -20,6 +20,7 @@ Interactive prompts collect:
   whether to run npm run dev after generation
   whether to initialize Git
   whether to create a GitHub repository
+  whether to prepare or connect the project with Netlify
 
 Defaults:
   output directory: /Users/jean-le-grandbokassa/Sites
@@ -28,8 +29,9 @@ Defaults:
 
 This orchestrator calls scripts/create-static-mockup.sh with the collected
 values. Optional Git and GitHub automation delegates to the shared helpers in
-scripts/project-git/. It does not use Vite, use Webpack, or duplicate scaffold,
-Git, or GitHub logic.
+scripts/project-git/. Optional Netlify setup delegates to the shared helper in
+scripts/project-netlify/. It does not use Vite, use Webpack, or duplicate
+scaffold, Git, GitHub, or Netlify logic.
 USAGE
 }
 
@@ -128,6 +130,7 @@ print_summary() {
   printf 'npm run dev started: %s\n' "$NPM_DEV_STATUS"
   printf 'Git initialized: %s\n' "$GIT_INIT_STATUS"
   printf 'GitHub repository created: %s\n' "$GITHUB_STATUS"
+  printf 'Netlify step: %s\n' "$NETLIFY_STATUS"
 
   if [[ -n "$REPO_NAME" ]]; then
     printf 'GitHub repository name: %s\n' "$REPO_NAME"
@@ -139,6 +142,20 @@ print_summary() {
 
   if [[ -n "$REPOSITORY_URL" ]]; then
     printf 'GitHub repository URL: %s\n' "$REPOSITORY_URL"
+  fi
+
+  printf '\nNext steps:\n'
+
+  if [[ "$NPM_INSTALL_STATUS" != "yes" ]]; then
+    printf '%s\n' '- Run npm install before local development or Netlify readiness checks.'
+  elif [[ "$NPM_DEV_STATUS" != "yes" ]]; then
+    printf '%s\n' '- Run npm run dev when you are ready to review the mockup locally.'
+  fi
+
+  if [[ "$NETLIFY_STATUS" == "skipped" ]]; then
+    printf '%s\n' '- Run netlifybootstrap later if you want to connect the project to Netlify.'
+  elif [[ "$NETLIFY_STATUS" == "completed" ]]; then
+    printf '%s\n' '- Review the connected Netlify site settings and deployment configuration.'
   fi
 }
 
@@ -159,10 +176,12 @@ REPO_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 CREATE_SCRIPT="$SCRIPT_DIR/create-static-mockup.sh"
 INIT_GIT_SCRIPT="$REPO_DIR/scripts/project-git/init-git-project.sh"
 CREATE_GITHUB_SCRIPT="$REPO_DIR/scripts/project-git/create-github-repo.sh"
+NETLIFY_BOOTSTRAP_SCRIPT="$REPO_DIR/scripts/project-netlify/bootstrap-netlify-site.sh"
 
 [[ -x "$CREATE_SCRIPT" ]] || error "Generator script is not executable: $CREATE_SCRIPT"
 [[ -x "$INIT_GIT_SCRIPT" ]] || error "Shared Git helper is not executable: $INIT_GIT_SCRIPT"
 [[ -x "$CREATE_GITHUB_SCRIPT" ]] || error "Shared GitHub helper is not executable: $CREATE_GITHUB_SCRIPT"
+[[ -x "$NETLIFY_BOOTSTRAP_SCRIPT" ]] || error "Shared Netlify helper is not executable: $NETLIFY_BOOTSTRAP_SCRIPT"
 
 printf 'Static Bootstrap Sass mockup bootstrap\n'
 printf '%s\n' '--------------------------------------'
@@ -201,6 +220,8 @@ GITHUB_STATUS="no"
 REPO_NAME=""
 REPO_VISIBILITY=""
 REPOSITORY_URL=""
+RUN_NETLIFY=0
+NETLIFY_STATUS="skipped"
 
 if prompt_yes_no "Initialize Git repository" "no"; then
   INITIAL_BRANCH="$(prompt_value "Initial branch name" "main" 1)"
@@ -239,6 +260,21 @@ if prompt_yes_no "Create GitHub repository" "no"; then
   fi
 fi
 
+if prompt_yes_no "Prepare/connect project with Netlify" "no"; then
+  RUN_NETLIFY=1
+
+  printf '\nBefore Netlify setup:\n'
+  printf '%s\n' '- The project should already be a Git repository.'
+  printf '%s\n' '- The project should already have a GitHub remote.'
+  printf '%s\n' '- The shared Netlify bootstrap will run its own readiness, Git, Netlify CLI, and deploy prompts.'
+
+  if ! git -C "$PROJECT_PATH" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    printf '%s\n' 'Warning: this project is not currently a Git repository. Netlify init will fail unless that is fixed first.' >&2
+  elif [[ -z "$(git -C "$PROJECT_PATH" remote 2>/dev/null)" ]]; then
+    printf '%s\n' 'Warning: this project does not currently have a Git remote. Netlify init expects a GitHub remote or another Git remote.' >&2
+  fi
+fi
+
 if [[ "$RUN_NPM_INSTALL" -eq 1 ]]; then
   printf '\nInstalling npm dependencies...\n'
   (cd "$PROJECT_PATH" && npm install)
@@ -253,6 +289,18 @@ fi
 
 if [[ "$RUN_NPM_DEV" -eq 1 ]]; then
   NPM_DEV_STATUS="yes"
+fi
+
+if [[ "$RUN_NETLIFY" -eq 1 ]]; then
+  printf '\nStarting shared Netlify bootstrap...\n'
+
+  if "$NETLIFY_BOOTSTRAP_SCRIPT" --project-dir "$PROJECT_PATH"; then
+    NETLIFY_STATUS="completed"
+  else
+    NETLIFY_STATUS="failed"
+    print_summary
+    exit 1
+  fi
 fi
 
 print_summary

@@ -36,8 +36,11 @@ The expected Netlify settings are:
 Recommended interactive workflow:
 
 ```bash
-scripts/project-netlify/bootstrap-netlify-site.sh
+scripts/project-netlify/bootstrap-netlify-site.sh \
+  --project-dir "/path/to/static-project"
 ```
+
+If `--project-dir` is omitted, the helper asks for the full project path.
 
 Check a project before Netlify setup with the low-level readiness checker:
 

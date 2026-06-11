@@ -10,7 +10,8 @@ BrowserSync, and JavaScript mockup.
 ```
 
 The bootstrap prompts for the project name, project slug, author, pages, output
-directory, dependency installation, local dev startup, Git, and GitHub setup.
+directory, dependency installation, local dev startup, Git, GitHub setup, and
+optional Netlify setup.
 
 ## 2. Choose Pages
 
@@ -60,19 +61,30 @@ Generated static projects include `netlify.toml` and use:
 - build command: `npm run build`
 - publish directory: `public`
 
-Before initializing Netlify, run the readiness check:
+The static bootstrap can launch the shared Netlify workflow when it asks:
+
+```text
+Prepare/connect project with Netlify [y/N]
+```
+
+The default is no. If selected, it passes the generated project directory to the
+shared Netlify bootstrap. The project should already be a Git repository and
+should already have a GitHub remote before `netlify init`.
+
+The standalone Netlify workflow remains available:
 
 ```bash
-./scripts/project-netlify/check-netlify-ready.sh \
+./scripts/project-netlify/bootstrap-netlify-site.sh \
   --project-dir "/Users/jean-le-grandbokassa/Sites/example-static-mockup"
 ```
 
-Then authenticate and initialize:
+Manual deploy is optional and not the default. Continuous deployment through
+`netlify init` is the preferred workflow.
+
+Authenticate the Netlify CLI before initialization:
 
 ```bash
 netlify login
-./scripts/project-netlify/init-netlify-site.sh \
-  --project-dir "/Users/jean-le-grandbokassa/Sites/example-static-mockup"
 ```
 
 ## Workflow Navigation

@@ -56,7 +56,8 @@ Bootstrap-through-Sass, BrowserSync, and JavaScript mockup.
 
 The script prompts for project name, slug, author, pages, output directory,
 dependency installation, local dev server startup, optional Git, and optional
-GitHub setup.
+GitHub setup. It can also optionally launch the shared Netlify bootstrap for
+the generated project.
 
 ## Initialize Git
 
@@ -144,7 +145,8 @@ Requirements:
 ## Interactive Netlify Bootstrap
 
 ```bash
-./scripts/project-netlify/bootstrap-netlify-site.sh
+./scripts/project-netlify/bootstrap-netlify-site.sh \
+  --project-dir "/path/to/static-project"
 ```
 
 Alias after sourcing `scripts/shell/aliases.zsh`:
@@ -155,6 +157,9 @@ netlifybootstrap
 
 Purpose: guide the user through Netlify readiness checks, optional Netlify
 initialization/linking, and optional manual deploy.
+
+This command can run standalone or from the static mockup orchestrator. Manual
+deploy is optional and not the default.
 
 ## Documentation Navigation
 

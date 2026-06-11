@@ -9,7 +9,8 @@ BrowserSync, and JavaScript mockup from the reusable scaffold.
 
 Generated static projects are Netlify-ready: `public/` is a self-contained
 publish directory and `netlify.toml` prepares the future deployment workflow.
-Netlify deployment is not automated yet.
+The interactive bootstrap can optionally launch the shared Netlify workflow, and
+manual deploy remains optional and off by default.
 
 ## Recommended Interactive Usage
 
@@ -33,6 +34,7 @@ The interactive bootstrap asks for:
 - repository name
 - repository visibility
 - repository description
+- whether to prepare or connect the project with Netlify
 
 If `npm run dev` is selected, the script starts it only after dependencies have
 been installed by the script. The terminal remains occupied by BrowserSync and
@@ -84,6 +86,30 @@ scripts do not store credentials, tokens, or secrets.
 
 If GitHub repository creation is requested without Git being initialized, the
 interactive bootstrap skips GitHub creation safely and prints a clear message.
+
+## Optional Netlify Connection
+
+The interactive `staticbootstrap` workflow can launch the shared Netlify
+bootstrap after project generation and optional Git/GitHub setup. It delegates
+to:
+
+```bash
+scripts/project-netlify/bootstrap-netlify-site.sh
+```
+
+The generated project directory is passed to the shared helper. The Netlify
+helper still performs its own readiness, Git, Netlify CLI, and deployment
+prompts.
+
+A GitHub remote is recommended before Netlify initialization because
+`netlify init` is used to connect the project for continuous deployment.
+Manual deploy is optional and is not the default.
+
+The standalone alias remains available after sourcing the shell aliases:
+
+```bash
+netlifybootstrap
+```
 
 ## Manual Generator Usage
 
@@ -152,7 +178,9 @@ Generated projects include `netlify.toml` with:
 - publish directory: `public`
 
 This prepares the project for a future Netlify deployment workflow. It does not
-run `netlify init`, `netlify deploy`, or any CI/CD automation.
+force `netlify init`, `netlify deploy`, or any CI/CD automation. Netlify setup
+only runs when selected from `staticbootstrap` or when launched separately with
+`netlifybootstrap`.
 
 ## Troubleshooting
 

@@ -4,9 +4,10 @@ set -euo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  bootstrap-netlify-site.sh
+  bootstrap-netlify-site.sh [options]
 
 Options:
+  --project-dir    Existing static project directory. Optional.
   -h, --help    Show this help message.
 
 Interactive Netlify workflow for static projects. The script can run the
@@ -20,6 +21,15 @@ USAGE
 error() {
   printf 'Error: %s\n' "$1" >&2
   exit 1
+}
+
+require_value() {
+  local option="$1"
+  local value="${2:-}"
+
+  if [[ -z "$value" || "$value" == --* ]]; then
+    error "$option requires a value."
+  fi
 }
 
 prompt_required_path() {
@@ -101,9 +111,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHECK_SCRIPT="$SCRIPT_DIR/check-netlify-ready.sh"
 INIT_SCRIPT="$SCRIPT_DIR/init-netlify-site.sh"
 DEFAULT_PROJECT_DIR="/Users/jean-le-grandbokassa/Sites"
+PROJECT_DIR=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --project-dir)
+      require_value "$1" "${2:-}"
+      PROJECT_DIR="$2"
+      shift 2
+      ;;
     -h|--help)
       usage
       exit 0
@@ -121,7 +137,12 @@ printf 'Netlify static project bootstrap\n'
 printf 'Use this workflow after static project generation and Git/GitHub setup.\n'
 printf 'Continuous deployment through netlify init is the preferred workflow.\n\n'
 
-PROJECT_DIR="$(prompt_required_path "Full project directory path" "$DEFAULT_PROJECT_DIR")"
+if [[ -z "$PROJECT_DIR" ]]; then
+  PROJECT_DIR="$(prompt_required_path "Full project directory path" "$DEFAULT_PROJECT_DIR")"
+else
+  printf 'Project directory: %s\n' "$PROJECT_DIR"
+fi
+
 [[ -d "$PROJECT_DIR" ]] || error "Project directory does not exist: $PROJECT_DIR"
 
 READINESS_STATUS="skipped"

@@ -5,7 +5,8 @@ and Sass mockup skill. A first reusable scaffold now exists at
 `scaffolds/static-bootstrap-sass/`. Local project generation is now handled by
 `scripts/create-static-mockup.sh`. Interactive generation is handled by
 `scripts/bootstrap-static-mockup.sh`. Optional Git and GitHub automation is
-handled through the shared helpers in `scripts/project-git/`.
+handled through the shared helpers in `scripts/project-git/`. Optional Netlify
+setup is handled through the shared helper in `scripts/project-netlify/`.
 
 The default future tooling is npm scripts, Sass CLI, and BrowserSync. Vite,
 Webpack, and JavaScript bundling are not default choices and should be
@@ -23,6 +24,8 @@ considered later only when a project clearly justifies them.
      instead of duplicating scaffold copy or placeholder replacement logic.
    - The script delegates optional Git and GitHub automation to
      `scripts/project-git/`.
+   - The script delegates optional Netlify setup to
+     `scripts/project-netlify/bootstrap-netlify-site.sh`.
    - If `npm run dev` is selected, the script explains that the terminal will
      stay occupied by BrowserSync and Sass watch.
 
@@ -44,6 +47,7 @@ considered later only when a project clearly justifies them.
    - Ask whether GitHub repository creation should be handled.
    - Ask for repository name, visibility, and description when GitHub creation
      is requested.
+   - Ask whether to prepare or connect the project with Netlify.
 
 3. Validate project slug
    - Ensure the project slug uses lowercase letters, numbers, and hyphens.
@@ -99,13 +103,32 @@ considered later only when a project clearly justifies them.
      with a clear message.
    - Do not store credentials or tokens.
 
-9. Install dependencies when requested
+9. Capture optional Netlify choice
+   - Netlify setup is optional and defaults to no.
+   - If selected, explain that the project should already be a Git repository.
+   - Explain that the project should already have a GitHub remote or another Git
+     remote.
+   - Warn clearly when the generated project is not a Git repository or does not
+     have a remote.
+   - Do not fake or duplicate Git/GitHub setup.
+   - Keep manual deploy optional and not the default.
+
+10. Install dependencies when requested
    - The interactive orchestrator can run `npm install` after generation.
    - Manual users can enter the generated project directory and run
      `npm install`.
    - Dependency installation remains optional.
 
-10. Run local dev server when requested
+11. Prepare or connect Netlify when requested
+   - Run the shared Netlify helper after optional dependency installation and
+     before starting the local dev server.
+   - Call `scripts/project-netlify/bootstrap-netlify-site.sh` with the generated
+     project directory.
+   - Let the shared helper perform readiness, Git, Netlify CLI, init/link, and
+     optional deploy prompts.
+   - Do not duplicate Netlify logic in the static orchestrator.
+
+12. Run local dev server when requested
    - The interactive orchestrator can run `npm run dev` only after dependencies
      are installed by the script.
    - The default dev server uses BrowserSync, not Vite or Webpack.
@@ -114,11 +137,11 @@ considered later only when a project clearly justifies them.
    - `npm run serve` should start the local static server.
    - `npm run watch:scss` should run Sass watch.
    - `npm run build` should compile production CSS.
-   - `netlify.toml` prepares the future Netlify settings with build command
+   - `netlify.toml` prepares the Netlify settings with build command
      `npm run build` and publish directory `public`.
-   - Do not run Netlify deployment automation in this step.
+   - Do not make manual Netlify deploy the default.
 
-11. Display final next steps
+13. Display final next steps
     - Show the generated project path.
     - Show included pages.
     - Show whether Bootstrap, Sass, and JavaScript were included.
@@ -126,6 +149,7 @@ considered later only when a project clearly justifies them.
     - Show whether Git was initialized.
     - Show whether a GitHub repository was created.
     - Show repository name, visibility, and URL when available.
+    - Show whether the Netlify step was skipped, completed, or failed.
     - Show whether `npm install` was run.
     - Show whether `npm run dev` was started.
     - Show remaining manual setup steps.
