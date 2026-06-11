@@ -19,6 +19,8 @@ PATHS=(
   "checklists"
   "prompts"
   "templates"
+  "skills"
+  "scaffolds"
   "design-system"
 )
 

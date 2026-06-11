@@ -1,0 +1,10 @@
+// Keep mixins small and project-oriented. Do not recreate Bootstrap's mixin system.
+@mixin section-shell {
+  padding-block: var(--mockup-section-space);
+}
+
+@mixin media-placeholder {
+  min-height: clamp(14rem, 30vw, 24rem);
+  border: 1px solid var(--mockup-border);
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}

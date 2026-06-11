@@ -2,17 +2,22 @@
 
 Clean, GitHub-ready backup of reusable Codex agent agency assets from `~/.codex`.
 
-This repository intentionally stores only shareable operating instructions, workflows, prompts, templates, checklists, and design-system notes. It does not include credentials, sessions, logs, cache files, memories, local runtime configuration, tokens, or temporary state.
+This repository intentionally stores only shareable operating instructions, workflows, prompts, templates, scaffolds, skills, checklists, and design-system notes. It does not include credentials, sessions, logs, cache files, memories, local runtime configuration, tokens, or temporary state.
 
 ## Contents
 
 - `AGENTS.md` - global Codex operating instructions.
-- `agents/` - specialized agent instruction profiles.
-- `workflows/` - repeatable engineering and product workflows.
-- `checklists/` - quality gates and release readiness checks.
-- `prompts/` - reusable prompt templates.
-- `templates/` - reusable agent/project templates.
-- `design-system/` - UI, UX, motion, spacing, and typography guidance.
+- `agents/` - specialized technical profiles for specific stacks, roles, and review modes.
+- `prompts/` - reusable task prompts for common engineering work.
+- `workflows/` - repeatable procedures for features, bug fixes, reviews, refactors, releases, and onboarding.
+- `checklists/` - quality gates for delivery, security, release readiness, and UI/UX checks.
+- `templates/` - reusable project instruction templates for copying into specific repositories, not generated code scaffolds.
+- `skills/` - executable or semi-executable Codex workflows for repeatable procedures, including WordPress scaffold and static mockup workflow definitions.
+- `scaffolds/` - reusable generated-code templates and project fragments.
+- `design-system/` - UI/UX guidance for layout, typography, motion, spacing, and visual quality.
+- `scripts/` - sync utilities and shared project automation helpers.
+- `scripts/project-git/` - stack-agnostic Git/GitHub helpers that skills may
+  call without adding stack-specific assumptions.
 
 ## Sync Scripts
 
@@ -35,6 +40,13 @@ Apply the restore/sync to `~/.codex`:
 ```
 
 Both scripts use a strict allowlist and only touch the public-safe paths listed above.
+
+## Shared Project Scripts
+
+`scripts/project-git/` contains stack-agnostic Git and GitHub automation helpers
+for generated projects. Skills may call these helpers from WordPress, static
+mockup, Symfony, Laravel, Astro, or future workflows, but the helpers themselves
+must not contain stack-specific assumptions.
 
 ## GitHub Workflow
 

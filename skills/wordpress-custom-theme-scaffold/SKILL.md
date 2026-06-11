@@ -1,0 +1,95 @@
+---
+name: wordpress-custom-theme-scaffold
+description: Bootstrap a local maintainable custom WordPress theme project from reusable scaffold files, with optional companion plugin, Local WP symlinks, Git initialization, and GitHub repository creation.
+---
+
+# WordPress Custom Theme Scaffold
+
+Use this skill when asked to create or plan a maintainable custom WordPress
+theme project scaffold. The scaffold workflow may optionally include a companion
+custom plugin, Local WP symlinks, Git initialization, and GitHub repository
+setup.
+
+This skill now includes an interactive orchestrator:
+`scripts/bootstrap-wp-custom-project.sh`. Use it for the recommended end-to-end
+local workflow. It prompts for project values, calls the local generator, and
+optionally calls the Local WP symlink helper and the shared Git/GitHub helpers
+in `scripts/project-git/`.
+
+This skill also includes a local generator script:
+`scripts/create-wp-custom-theme.sh`. The script generates a local project folder
+from the existing WordPress theme and plugin scaffolds. It does not create Local
+WP symlinks, initialize Git, create GitHub repositories, push code, install npm
+dependencies, or generate client-specific content.
+
+The Local WP symlink helper is:
+`scripts/link-localwp.sh`. The helper links an already generated theme, and
+optionally its companion plugin, into an existing Local WP site. It does not
+initialize Git, create GitHub repositories, push code, or generate scaffold
+files.
+
+Git initialization is handled by the shared helper
+`scripts/project-git/init-git-project.sh`. GitHub repository creation is handled
+by the shared helper `scripts/project-git/create-github-repo.sh`, which uses
+GitHub CLI and requires `gh auth status` to succeed. These steps are optional
+and never store credentials in the repository. Skill-local Git/GitHub scripts
+are compatibility wrappers only.
+
+For the detailed workflow, read `references/workflow.md`. For command examples
+and troubleshooting, read `references/usage.md`.
+
+## Purpose
+
+The skill is intended to support a future workflow that can:
+
+- create a maintainable custom WordPress theme project
+- optionally create a companion custom plugin for Custom Post Types, taxonomies,
+  metadata, and business logic
+- link the generated theme and optional plugin into a Local WP installation
+  using symlinks when requested
+- optionally initialize Git and push to GitHub
+
+## Required Inputs
+
+Collect and confirm these inputs before generating files:
+
+- human project name
+- project slug
+- theme name
+- theme slug
+- PHP prefix
+- text domain
+- author name
+- output directory
+- whether to create a companion plugin
+- plugin name, when a companion plugin is requested
+- plugin slug, when a companion plugin is requested
+- Local WP project path, when symlinks are requested
+- whether to initialize Git
+- whether to create a GitHub repository
+- repository visibility, when a GitHub repository is requested
+
+## Expected Outputs
+
+The future scaffold workflow should produce:
+
+- project folder
+- theme folder
+- optional plugin folder
+- documentation folder
+- local project README
+- local setup notes
+- optional Local WP symlinks
+- optional Git repository
+- optional GitHub remote
+
+## Boundaries
+
+- This skill does not design the website.
+- This skill does not create client-specific content.
+- This skill does not generate production deployment configuration.
+- This skill does not store secrets or credentials.
+- CPTs, taxonomies, metadata, and business logic belong in the companion plugin,
+  not the theme.
+- Presentation, templates, layouts, assets, and frontend rendering belong in the
+  theme.
