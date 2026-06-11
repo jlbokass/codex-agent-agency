@@ -21,17 +21,24 @@ checklist before building conversion automation or writing production PHP.
 3. Create a Local WP site for `Dry Run WP Demo`.
 4. Generate the WordPress project with `wpbootstrap`.
 5. Activate the theme and plugin in WordPress.
-6. Open the integration prompt:
+6. Open the mapping prompt:
+
+   ```text
+   prompts/create-static-to-wordpress-mapping.md
+   ```
+
+7. Ask Codex for a mapping only.
+8. Review the proposed page-to-template mapping.
+9. Review proposed template parts.
+10. Review dynamic content assumptions.
+11. Open the integration prompt only after the mapping is validated:
 
    ```text
    prompts/integrate-static-mockup-into-wordpress.md
    ```
 
-7. Ask Codex for an integration plan only.
-8. Review the proposed page-to-template mapping.
-9. Review proposed template parts.
-10. Review dynamic content assumptions.
-11. Run the review checklist manually:
+12. Ask Codex for an integration plan only.
+13. Run the review checklist manually:
 
     ```text
     checklists/static-to-wordpress-review.md
@@ -40,6 +47,7 @@ checklist before building conversion automation or writing production PHP.
 ## Do Not Implement Yet
 
 - The dry run should stop after the integration plan.
+- The mapping prompt should not modify or create files.
 - No PHP conversion is required in this test.
 - No production code is required.
 - Do not modify generated WordPress theme or plugin files during this dry run.
@@ -65,6 +73,7 @@ checklist before building conversion automation or writing production PHP.
 - [Static to WordPress Integration Workflow](static-to-wordpress-integration.md)
 - [Static Mockup Workflow](static-mockup.md)
 - [WordPress Custom Project Workflow](wordpress-custom-project.md)
+- [Mapping Prompt](../../prompts/create-static-to-wordpress-mapping.md)
 - [Integration Prompt](../../prompts/integrate-static-mockup-into-wordpress.md)
 - [Review Checklist](../../checklists/static-to-wordpress-review.md)
 

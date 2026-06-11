@@ -77,20 +77,28 @@ wpbootstrap
 7. Create the theme and optional plugin.
 8. Create Local WP symlinks.
 9. Activate the theme and plugin in WordPress.
-10. Use the static-to-WordPress integration prompt.
-11. Review the integration plan before coding.
-12. Convert static pages into WordPress templates.
-13. Split reusable sections into `template-parts/`.
-14. Migrate SCSS, CSS, and JavaScript assets.
-15. Identify dynamic content.
-16. Place CPTs, taxonomies, metadata, admin customization, and business logic in
+10. Run the mapping prompt first.
+11. Validate the mapping.
+12. Run the static-to-WordPress integration prompt.
+13. Review the integration plan before coding.
+14. Convert static pages into WordPress templates.
+15. Split reusable sections into `template-parts/`.
+16. Migrate SCSS, CSS, and JavaScript assets.
+17. Identify dynamic content.
+18. Place CPTs, taxonomies, metadata, admin customization, and business logic in
     the plugin.
-17. Use the static-to-WordPress review checklist.
-18. Validate responsive behavior and WordPress safety.
+19. Use the static-to-WordPress review checklist.
+20. Validate responsive behavior and WordPress safety.
 
-## Codex Prompt To Use
+## Codex Prompts To Use
 
-Use the reusable prompt:
+First create a mapping without modifying files:
+
+```text
+prompts/create-static-to-wordpress-mapping.md
+```
+
+Validate that mapping before implementation. Then use the integration prompt:
 
 ```text
 prompts/integrate-static-mockup-into-wordpress.md
@@ -149,6 +157,7 @@ belong in the plugin so they survive theme changes.
 - [Static to WordPress Dry Run](static-to-wordpress-dry-run.md)
 - [Netlify Workflow](netlify.md)
 - [Static to WordPress Skill](../../skills/static-to-wordpress-integration/SKILL.md)
+- [Mapping Prompt](../../prompts/create-static-to-wordpress-mapping.md)
 - [Integration Prompt](../../prompts/integrate-static-mockup-into-wordpress.md)
 - [Review Checklist](../../checklists/static-to-wordpress-review.md)
 
