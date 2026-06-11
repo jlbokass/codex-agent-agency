@@ -18,6 +18,7 @@ This repository intentionally stores only shareable operating instructions, work
 - `scripts/` - sync utilities and shared project automation helpers.
 - `scripts/project-git/` - stack-agnostic Git/GitHub helpers that skills may
   call without adding stack-specific assumptions.
+- `scripts/project-netlify/` - shared Netlify helpers for static projects.
 
 ## Sync Scripts
 
@@ -47,6 +48,10 @@ Both scripts use a strict allowlist and only touch the public-safe paths listed 
 for generated projects. Skills may call these helpers from WordPress, static
 mockup, Symfony, Laravel, Astro, or future workflows, but the helpers themselves
 must not contain stack-specific assumptions.
+
+`scripts/project-netlify/` contains shared Netlify helpers for static projects.
+Deployment is optional and should only happen after Git and GitHub setup are in
+place.
 
 ## GitHub Workflow
 
