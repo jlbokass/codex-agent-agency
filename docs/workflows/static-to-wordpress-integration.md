@@ -4,6 +4,9 @@ Use this workflow to convert a validated static mockup into a maintainable
 WordPress custom theme while preserving the approved visual design and keeping
 content modeling decisions explicit.
 
+For a plan-only test of this process, use the
+[Static to WordPress Dry Run](static-to-wordpress-dry-run.md).
+
 ## When To Use This Workflow
 
 - Use it when a client has approved a static mockup.
@@ -143,6 +146,7 @@ belong in the plugin so they survive theme changes.
 
 - [Static Mockup Workflow](static-mockup.md)
 - [WordPress Custom Project Workflow](wordpress-custom-project.md)
+- [Static to WordPress Dry Run](static-to-wordpress-dry-run.md)
 - [Netlify Workflow](netlify.md)
 - [Static to WordPress Skill](../../skills/static-to-wordpress-integration/SKILL.md)
 - [Integration Prompt](../../prompts/integrate-static-mockup-into-wordpress.md)
@@ -151,6 +155,7 @@ belong in the plugin so they survive theme changes.
 ## Workflow Navigation
 
 - [Workflows Home](index.md)
+- [Static to WordPress Dry Run](static-to-wordpress-dry-run.md)
 - [Static Mockup](static-mockup.md)
 - [WordPress Custom Project](wordpress-custom-project.md)
 - [Git and GitHub Helpers](git-github.md)

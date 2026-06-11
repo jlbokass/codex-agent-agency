@@ -13,6 +13,7 @@
 
 - Enable GitHub Pages from `/docs` after merge to `main`.
 - Add shell aliases locally for the main bootstrap, GitHub, and Netlify helpers.
+- Run static-to-WordPress dry-run before building conversion automation.
 - Static-to-WordPress integration prompt now exists.
 - Static-to-WordPress review checklist now exists.
 - Improve static UI components.
