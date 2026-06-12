@@ -78,7 +78,7 @@ wpbootstrap
 8. Create Local WP symlinks.
 9. Activate the theme and plugin in WordPress.
 10. Run the mapping prompt first.
-11. Validate the mapping.
+11. Validate the mapping with the mapping review checklist.
 12. Run the static-to-WordPress integration prompt.
 13. Review the integration plan before coding.
 14. Convert static pages into WordPress templates.
@@ -98,7 +98,13 @@ First create a mapping without modifying files:
 prompts/create-static-to-wordpress-mapping.md
 ```
 
-Validate that mapping before implementation. Then use the integration prompt:
+Use the mapping review checklist before implementation:
+
+```text
+checklists/static-to-wordpress-mapping-review.md
+```
+
+After the mapping is approved, use the integration prompt:
 
 ```text
 prompts/integrate-static-mockup-into-wordpress.md
@@ -158,6 +164,7 @@ belong in the plugin so they survive theme changes.
 - [Netlify Workflow](netlify.md)
 - [Static to WordPress Skill](../../skills/static-to-wordpress-integration/SKILL.md)
 - [Mapping Prompt](../../prompts/create-static-to-wordpress-mapping.md)
+- [Mapping Review Checklist](../../checklists/static-to-wordpress-mapping-review.md)
 - [Integration Prompt](../../prompts/integrate-static-mockup-into-wordpress.md)
 - [Review Checklist](../../checklists/static-to-wordpress-review.md)
 

@@ -15,6 +15,7 @@
 - Add shell aliases locally for the main bootstrap, GitHub, and Netlify helpers.
 - Run static-to-WordPress dry-run before building conversion automation.
 - Static-to-WordPress mapping prompt now exists.
+- Static-to-WordPress mapping review checklist now exists.
 - Static-to-WordPress integration prompt now exists.
 - Static-to-WordPress review checklist now exists.
 - Improve static UI components.

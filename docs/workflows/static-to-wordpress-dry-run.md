@@ -28,17 +28,24 @@ checklist before building conversion automation or writing production PHP.
    ```
 
 7. Ask Codex for a mapping only.
-8. Review the proposed page-to-template mapping.
-9. Review proposed template parts.
-10. Review dynamic content assumptions.
-11. Open the integration prompt only after the mapping is validated:
+8. Run the mapping review checklist manually:
+
+   ```text
+   checklists/static-to-wordpress-mapping-review.md
+   ```
+
+9. Review the proposed page-to-template mapping.
+10. Review proposed template parts.
+11. Review dynamic content assumptions.
+12. Open the integration prompt only after the mapping is validated:
 
    ```text
    prompts/integrate-static-mockup-into-wordpress.md
    ```
 
-12. Ask Codex for an integration plan only.
-13. Run the review checklist manually:
+13. Ask Codex for an integration plan only.
+14. Run the post-integration review checklist manually when implementation is
+    eventually tested:
 
     ```text
     checklists/static-to-wordpress-review.md
@@ -74,6 +81,7 @@ checklist before building conversion automation or writing production PHP.
 - [Static Mockup Workflow](static-mockup.md)
 - [WordPress Custom Project Workflow](wordpress-custom-project.md)
 - [Mapping Prompt](../../prompts/create-static-to-wordpress-mapping.md)
+- [Mapping Review Checklist](../../checklists/static-to-wordpress-mapping-review.md)
 - [Integration Prompt](../../prompts/integrate-static-mockup-into-wordpress.md)
 - [Review Checklist](../../checklists/static-to-wordpress-review.md)
 
