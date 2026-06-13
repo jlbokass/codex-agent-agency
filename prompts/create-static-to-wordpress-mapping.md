@@ -120,3 +120,22 @@ Include:
 
 Stop after producing the mapping. Do not implement until the user validates the
 plan.
+
+Static mockup project path:
+/Users/jean-le-grandbokassa/Sites/garage-static-demo
+
+WordPress custom project path:
+/Users/jean-le-grandbokassa/Sites/garage-wp-demo
+
+Target theme slug:
+garage-wp-demo-theme
+
+Plugin slug:
+garage-wp-demo-core
+
+Pages to analyze:
+index,about,services,works,contact
+
+Important:
+Do not modify files.
+Produce only the mapping report.
