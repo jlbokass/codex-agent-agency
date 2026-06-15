@@ -141,7 +141,7 @@ promptcopy --help
 If an alias is not found, source the aliases file first:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 ## Documentation Navigation

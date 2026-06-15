@@ -10,7 +10,7 @@ scripts/shell/aliases.zsh
 Load it manually with:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 Manual loading affects only the current shell session. To load aliases in new

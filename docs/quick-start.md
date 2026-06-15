@@ -7,7 +7,7 @@ generated project directory.
 Optional short aliases are available after sourcing the versioned alias file:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 ## WordPress Custom Project Bootstrap

@@ -19,7 +19,7 @@ edit shell configuration automatically.
 ## Load Manually
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 Manual loading affects only the current shell session.
@@ -29,7 +29,7 @@ Manual loading affects only the current shell session.
 Add this line to `~/.zshrc`:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 This repository does not auto-edit `~/.zshrc`; add the line only when you want
