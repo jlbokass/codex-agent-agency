@@ -106,6 +106,25 @@ gh auth login
 
 GitHub repository creation will fail until `gh auth status` succeeds.
 
+## Prompt Markdown Files Are Not Executable
+
+Prompt files in `prompts/` are Markdown instructions for Codex, not shell
+scripts. Do not run them directly.
+
+If you see this error after trying to run a prompt file:
+
+```text
+zsh: permission denied
+```
+
+Copy the prompt into the macOS clipboard instead:
+
+```bash
+promptcopy create-static-to-wordpress-mapping
+```
+
+Use `promptcopy --list` to see available prompt names.
+
 ## Help Commands
 
 Main workflow scripts and their aliases support both `--help` and `-h`:
@@ -116,6 +135,7 @@ staticbootstrap --help
 netlifycheck --help
 netlifyinit --help
 netlifybootstrap --help
+promptcopy --help
 ```
 
 If an alias is not found, source the aliases file first:

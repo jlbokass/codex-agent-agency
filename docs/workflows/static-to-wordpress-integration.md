@@ -127,6 +127,12 @@ First create a mapping without modifying files:
 prompts/create-static-to-wordpress-mapping.md
 ```
 
+After sourcing `scripts/shell/aliases.zsh`, copy it into Codex with:
+
+```bash
+promptcopy create-static-to-wordpress-mapping
+```
+
 Use the mapping review checklist before implementation:
 
 ```text
@@ -137,6 +143,12 @@ After the mapping is approved, use the integration prompt:
 
 ```text
 prompts/integrate-static-mockup-into-wordpress.md
+```
+
+Copy it with:
+
+```bash
+promptcopy integrate-static-mockup-into-wordpress
 ```
 
 The prompt requires Codex to inspect both projects, present an integration plan,
