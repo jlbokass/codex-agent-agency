@@ -161,6 +161,34 @@ initialization/linking, and optional manual deploy.
 This command can run standalone or from the static mockup orchestrator. Manual
 deploy is optional and not the default.
 
+## Prompt Clipboard Helper
+
+```bash
+./scripts/prompts/promptcopy.sh create-static-to-wordpress-mapping
+```
+
+Alias after sourcing `scripts/shell/aliases.zsh`:
+
+```bash
+promptcopy create-static-to-wordpress-mapping
+```
+
+Purpose: copy a reusable Markdown prompt from `prompts/` into the macOS
+clipboard. Prompt files are instructions for Codex, not executable scripts.
+
+Common examples:
+
+```bash
+promptcopy create-static-to-wordpress-mapping
+promptcopy create-static-to-wordpress-mapping.md
+promptcopy integrate-static-mockup-into-wordpress
+promptcopy --list
+```
+
+Requirements:
+
+- macOS `pbcopy` must be available.
+
 ## Documentation Navigation
 
 - [Documentation Home](index.md)

@@ -10,7 +10,7 @@ scripts/shell/aliases.zsh
 Load it manually with:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 Manual loading affects only the current shell session. To load aliases in new
@@ -22,14 +22,16 @@ source ~/.zshrc
 
 ## Alias List
 
-The alias file resolves script paths from its own location, then points each
-alias directly at the executable workflow script.
+The alias file resolves most script paths from its own location, then points
+each alias directly at the executable script. The `promptcopy` alias uses the
+configured repository path shown in `scripts/shell/aliases.zsh`.
 
 - `wpbootstrap` - WordPress custom project bootstrap.
 - `staticbootstrap` - static Bootstrap/Sass mockup bootstrap.
 - `netlifycheck` - Netlify readiness checker.
 - `netlifyinit` - Netlify init/link helper.
 - `netlifybootstrap` - interactive Netlify workflow.
+- `promptcopy` - copies reusable Markdown prompts into the macOS clipboard.
 
 ## Project Bootstrap
 
@@ -44,6 +46,7 @@ staticbootstrap
 netlifycheck --project-dir "/path/to/static-project"
 netlifyinit --project-dir "/path/to/static-project"
 netlifybootstrap
+promptcopy create-static-to-wordpress-mapping
 ```
 
 ## Verify Loaded Aliases
@@ -54,6 +57,7 @@ alias staticbootstrap
 alias netlifycheck
 alias netlifyinit
 alias netlifybootstrap
+alias promptcopy
 ```
 
 ## Help Through Aliases
@@ -67,6 +71,7 @@ staticbootstrap --help
 netlifycheck --help
 netlifyinit --help
 netlifybootstrap --help
+promptcopy --help
 ```
 
 ## Documentation Navigation

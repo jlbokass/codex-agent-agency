@@ -28,6 +28,9 @@ Skills may cover repeatable workflows such as:
   creating static HTML, SCSS, Bootstrap customized through Sass, lightweight
   JavaScript, npm script, Sass CLI, and BrowserSync mockups before backend or
   CMS integration.
+- `static-to-wordpress-integration/` - defines the contract and future workflow
+  for converting validated static mockups into maintainable WordPress custom
+  themes with optional companion plugin content modeling.
 
 This directory is reserved for workflow definitions. It does not contain
 generated project scaffolds.

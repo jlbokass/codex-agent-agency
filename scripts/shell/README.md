@@ -2,8 +2,9 @@
 
 `aliases.zsh` contains versioned zsh aliases for the main Codex Agent Agency
 workflow commands. It is meant to be sourced manually or from a local shell
-profile. It resolves command paths from its own location and does not edit shell
-configuration automatically.
+profile. Most command paths resolve from the alias file location; `promptcopy`
+uses the configured repository path shown in the alias file. This file does not
+edit shell configuration automatically.
 
 ## Available Aliases
 
@@ -13,11 +14,12 @@ configuration automatically.
 - `netlifycheck` - runs the Netlify readiness checker.
 - `netlifyinit` - runs the Netlify init/link helper.
 - `netlifybootstrap` - starts the interactive Netlify workflow.
+- `promptcopy` - copies a reusable Markdown prompt into the macOS clipboard.
 
 ## Load Manually
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 Manual loading affects only the current shell session.
@@ -27,7 +29,7 @@ Manual loading affects only the current shell session.
 Add this line to `~/.zshrc`:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 This repository does not auto-edit `~/.zshrc`; add the line only when you want
@@ -49,6 +51,7 @@ alias staticbootstrap
 alias netlifycheck
 alias netlifyinit
 alias netlifybootstrap
+alias promptcopy
 ```
 
 ## Show Command Help
@@ -62,6 +65,7 @@ staticbootstrap --help
 netlifycheck --help
 netlifyinit --help
 netlifybootstrap --help
+promptcopy --help
 ```
 
 Short help works too:
@@ -72,4 +76,5 @@ staticbootstrap -h
 netlifycheck -h
 netlifyinit -h
 netlifybootstrap -h
+promptcopy -h
 ```

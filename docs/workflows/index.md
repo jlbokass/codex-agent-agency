@@ -7,6 +7,8 @@ scaffolds, scripts, and manual verification steps.
 
 - [WordPress Custom Project](wordpress-custom-project.md)
 - [Static Mockup](static-mockup.md)
+- [Static to WordPress Integration](static-to-wordpress-integration.md)
+- [Static to WordPress Dry Run](static-to-wordpress-dry-run.md)
 - [Git and GitHub Helpers](git-github.md)
 - [Netlify Workflow](netlify.md)
 

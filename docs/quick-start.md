@@ -7,7 +7,7 @@ generated project directory.
 Optional short aliases are available after sourcing the versioned alias file:
 
 ```zsh
-source /Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/shell/aliases.zsh
+source /Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/shell/aliases.zsh
 ```
 
 ## WordPress Custom Project Bootstrap
@@ -80,6 +80,12 @@ Then initialize the Netlify site from a Git-backed static project:
 ./scripts/project-netlify/init-netlify-site.sh \
   --project-dir "/Users/jean-le-grandbokassa/Sites/example-static-mockup"
 ```
+
+## Static to WordPress Integration
+
+After a static mockup is validated and approved, use the
+[Static to WordPress Integration](workflows/static-to-wordpress-integration.md)
+workflow to plan the WordPress conversion before coding.
 
 ## Documentation Navigation
 
