@@ -19,4 +19,4 @@ alias netlifyinit="$CODEX_AGENT_AGENCY_ROOT/scripts/project-netlify/init-netlify
 alias netlifybootstrap="$CODEX_AGENT_AGENCY_ROOT/scripts/project-netlify/bootstrap-netlify-site.sh"
 
 # Copy a reusable Markdown prompt into the macOS clipboard.
-alias promptcopy="/Users/jean-le-grandbokassa/Sites/codex-agent-agency/scripts/prompts/promptcopy.sh"
+alias promptcopy="/Users/jean-le-grandbokassa/CodexProjects/codex-agent-agency/scripts/prompts/promptcopy.sh"
