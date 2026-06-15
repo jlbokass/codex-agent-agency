@@ -4,6 +4,10 @@ This is a manual validation scenario for the static-to-WordPress integration
 workflow. It is meant to test the planning process, documentation, prompt, and
 checklist before building conversion automation or writing production PHP.
 
+The original dry run has progressed into a successful full pilot. Keep this
+guide as a reusable planning rehearsal for future projects before committing to
+theme/plugin implementation.
+
 ## Recommended Test Scenario
 
 - Static project name: `Dry Run Static Demo`
@@ -51,7 +55,21 @@ checklist before building conversion automation or writing production PHP.
     checklists/static-to-wordpress-review.md
     ```
 
-## Do Not Implement Yet
+## Recommended Pilot Order
+
+When a dry run moves into implementation, use the validated page sequence from
+the full pilot:
+
+1. Homepage.
+2. About.
+3. Services.
+4. Works / CPT.
+5. Contact.
+
+Use the Works step to confirm whether content should remain static or become a
+CPT in the plugin.
+
+## Dry-Run Boundary
 
 - The dry run should stop after the integration plan.
 - The mapping prompt should not modify or create files.
@@ -68,6 +86,8 @@ checklist before building conversion automation or writing production PHP.
 - Codex produces a coherent integration plan.
 - Checklist is understandable and usable.
 - Documentation gaps are identified.
+- The plan can be expanded into the validated full pilot order when the project
+  is ready for implementation.
 
 ## Feedback Notes
 

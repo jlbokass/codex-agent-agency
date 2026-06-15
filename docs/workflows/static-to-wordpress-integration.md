@@ -7,6 +7,20 @@ content modeling decisions explicit.
 For a plan-only test of this process, use the
 [Static to WordPress Dry Run](static-to-wordpress-dry-run.md).
 
+## Pilot Validation Status
+
+This workflow has been validated through a full static-to-WordPress integration
+pilot:
+
+1. Homepage integrated into `front-page.php`.
+2. About page integrated.
+3. Services page integrated.
+4. Works page implemented dynamically with a `work` CPT in the plugin.
+5. Contact page integrated.
+
+The pilot also validated navigation active states, mobile horizontal overflow
+fixes, and the theme/plugin boundary for CPT registration and business logic.
+
 ## When To Use This Workflow
 
 - Use it when a client has approved a static mockup.
@@ -81,7 +95,7 @@ wpbootstrap
 11. Validate the mapping with the mapping review checklist.
 12. Run the static-to-WordPress integration prompt.
 13. Review the integration plan before coding.
-14. Convert static pages into WordPress templates.
+14. Convert static pages into WordPress templates in the recommended order.
 15. Split reusable sections into `template-parts/`.
 16. Migrate SCSS, CSS, and JavaScript assets.
 17. Identify dynamic content.
@@ -89,6 +103,21 @@ wpbootstrap
     the plugin.
 19. Use the static-to-WordPress review checklist.
 20. Validate responsive behavior and WordPress safety.
+
+## Recommended Page Integration Order
+
+The pilot validated this page-by-page order:
+
+1. Homepage.
+2. About.
+3. Services.
+4. Works / CPT.
+5. Contact.
+
+Start with the homepage to establish global layout, header, footer, assets, and
+template-part structure. Integrate mostly static content pages next, then handle
+the dynamic Works section once the theme structure is stable. Finish with Contact
+after shared layout and form/content expectations are clear.
 
 ## Codex Prompts To Use
 

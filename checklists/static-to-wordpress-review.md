@@ -23,12 +23,14 @@ custom theme.
 - [ ] Header extracted cleanly.
 - [ ] Footer extracted cleanly.
 - [ ] Navigation handled with WordPress functions when applicable.
+- [ ] Navigation active states match the current page or archive context.
 - [ ] Template parts are named clearly.
 - [ ] Presentation logic stays in the theme.
 
 ## D. Plugin and Content Model
 
 - [ ] CPT needs identified.
+- [ ] CPTs are registered in the plugin, not the theme.
 - [ ] Taxonomy needs identified.
 - [ ] Metadata/custom field needs identified.
 - [ ] Business logic is not added to the theme.
@@ -56,7 +58,7 @@ custom theme.
 - [ ] Desktop layout preserved.
 - [ ] Mobile layout preserved.
 - [ ] Navigation works on mobile.
-- [ ] No horizontal overflow.
+- [ ] No horizontal overflow on mobile or desktop.
 - [ ] Spacing remains consistent.
 - [ ] Validated visual design is preserved.
 
